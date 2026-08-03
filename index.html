@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harris Cabinetry | Crafted Custom Cabinetry</title>
+    <meta name="description" content="Harris Cabinetry - Custom crafted cabinetry with 12 door styles, premium finishes, and expert craftsmanship. Plainfield, IL." />
+    <!-- Replace xxxxxxx with your Adobe Fonts project ID containing Amster + Darkmode On -->
+    <link rel="stylesheet" href="https://use.typekit.net/xdx0zfg.css" />
+    <style>
+      /* Fallback if Adobe Fonts not configured */
+      @font-face {
+        font-family: 'amster';
+        src: local('Georgia');
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'darkmode-on';
+        src: local('system-ui');
+        font-display: swap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Static form for Netlify Forms detection (React renders the visible version) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="project-type" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
