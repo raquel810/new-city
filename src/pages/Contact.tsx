@@ -59,11 +59,11 @@ export default function Contact() {
   return (
     <div className="bg-[#F7F6F4] min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#242019] text-white py-20 px-4 text-center">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-4">
+      <section className="bg-[#F7F6F4] pt-32 pb-20 px-4 text-center">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#242019] mb-4">
           Start Your Project
         </h1>
-        <p className="font-sans text-lg md:text-xl text-[#E0E1E1] max-w-2xl mx-auto">
+        <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
           Tell us about your vision. We'll bring it to life.
         </p>
       </section>

@@ -12,14 +12,14 @@ export default function Home() {
             backgroundImage: 'url(/schneide-project_00.jpg)',
           }}
         >
-          <div className="absolute inset-0 bg-[#242019]/70" />
+          <div className="absolute inset-0 bg-white/50" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-7xl text-white mb-6 leading-tight">
+          <h1 className="font-serif text-5xl md:text-7xl text-[#242019] mb-6 leading-tight">
             Crafted Custom Cabinetry
           </h1>
-          <p className="text-lg md:text-xl text-[#E0E1E1] mb-10 max-w-2xl mx-auto font-sans">
+          <p className="text-lg md:text-xl text-[#242019]/70 mb-10 max-w-2xl mx-auto font-sans">
             Where precision woodworking meets timeless artistry — bespoke cabinetry
             designed and built to elevate every room in your home.
           </p>
@@ -33,8 +33,8 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center pt-2">
-            <div className="w-1.5 h-3 bg-white/70 rounded-full" />
+          <div className="w-6 h-10 border-2 border-[#242019]/30 rounded-full flex items-start justify-center pt-2">
+            <div className="w-1.5 h-3 bg-[#242019]/50 rounded-full" />
           </div>
         </div>
       </section>
@@ -182,12 +182,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-[#242019]">
+      <section className="section-padding bg-[#F7F6F4]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
+          <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-6">
             Ready to Start Your Project?
           </h2>
-          <p className="font-sans text-[#E0E1E1]/80 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="font-sans text-[#949089] text-lg mb-10 max-w-2xl mx-auto">
             Let's bring your vision to life. Schedule a consultation with our design team
             and discover what Harris Cabinetry can create for your home.
           </p>
@@ -200,7 +200,7 @@ export default function Home() {
             </Link>
             <Link
               to="/door-styles"
-              className="btn-outline inline-flex items-center justify-center gap-2 text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-[#242019] transition-all duration-300"
+              className="btn-outline inline-flex items-center justify-center gap-2 text-lg px-8 py-4 transition-all duration-300"
             >
               Browse Our Work
             </Link>

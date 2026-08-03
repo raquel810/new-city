@@ -119,14 +119,14 @@ export default function Studio() {
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Section */}
-      <section className="bg-[#242019] text-white py-16 sm:py-20 px-4">
+      <section className="bg-[#F7F6F4] pt-32 pb-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <img
             src="/THESTUDIO_hc_logo.png"
             alt="The Studio"
             className="mx-auto mb-6 h-20 sm:h-24 object-contain"
           />
-          <p className="font-sans text-[#E0E1E1] text-lg sm:text-xl max-w-2xl mx-auto">
+          <p className="font-sans text-[#949089] text-lg sm:text-xl max-w-2xl mx-auto">
             Build your perfect door, step by step. Choose your edge profiles, panel style, wood, and finish.
           </p>
         </div>

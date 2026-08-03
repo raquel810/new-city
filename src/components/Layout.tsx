@@ -121,7 +121,7 @@ function Navbar() {
 
 function Footer() {
   return (
-    <footer className="bg-brand-black text-white">
+    <footer className="bg-brand-taupe text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand Column */}
@@ -187,7 +187,7 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-sans text-xs text-brand-taupe">
             &copy; {new Date().getFullYear()} Harris Cabinetry. All rights reserved.
           </p>

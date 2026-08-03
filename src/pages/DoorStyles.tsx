@@ -161,12 +161,12 @@ export default function DoorStyles() {
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Banner */}
-      <section className="bg-[#242019] text-white py-20 px-6">
+      <section className="bg-[#F7F6F4] pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#242019] mb-4">
             Door Styles
           </h1>
-          <p className="font-sans text-lg md:text-xl text-[#E0E1E1] max-w-2xl mx-auto">
+          <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
             12 distinctive profiles, each crafted to define your space.
           </p>
         </div>

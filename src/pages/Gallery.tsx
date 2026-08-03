@@ -13,19 +13,19 @@ const projects: Project[] = [
     id: 1,
     title: 'The Schneider Residence',
     description: 'Custom walnut cabinetry with modern hardware',
-    images: Array.from({ length: 9 }, (_, i) => `/schneide-project_0${i}.jpg`),
+    images: Array.from({ length: 9 }, (_, i) => `/projects/schneider/schneide-project_0${i}.jpg`),
   },
   {
     id: 2,
     title: 'The Nguyen Residence',
     description: 'White shaker with natural wood accents',
-    images: Array.from({ length: 8 }, (_, i) => `/nguyen-project_0${i}.jpg`),
+    images: Array.from({ length: 8 }, (_, i) => `/projects/nguyen/nguyen-project_0${i}.jpg`),
   },
   {
     id: 3,
     title: 'The Carsten Residence',
     description: 'Transitional kitchen with custom island',
-    images: Array.from({ length: 7 }, (_, i) => `/carsten-project_0${i}.jpg`),
+    images: Array.from({ length: 7 }, (_, i) => `/projects/carsten/carsten-project_0${i}.jpg`),
   },
 ];
 
@@ -91,16 +91,15 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Banner */}
-      <section className="relative bg-[#242019] py-24 md:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#242019]/90 to-[#242019]" />
+      <section className="relative bg-[#F7F6F4] pt-32 pb-20">
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Camera className="h-8 w-8 text-[#949089]" />
           </div>
-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#F7F6F4] md:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#242019] md:text-5xl lg:text-6xl">
             Gallery
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg font-sans text-[#E0E1E1]/80">
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-sans text-[#949089]">
             Explore our portfolio of custom crafted projects.
           </p>
         </div>

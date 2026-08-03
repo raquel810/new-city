@@ -181,26 +181,8 @@ export default function WoodSpecies() {
   return (
     <main className="bg-[#F7F6F4]">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-44 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[#242019]" />
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="w-full h-full"
-            style={{
-              background: `
-                repeating-linear-gradient(
-                  82deg,
-                  rgba(148,144,137,0.3) 0px,
-                  transparent 1px,
-                  transparent 18px,
-                  rgba(148,144,137,0.2) 19px
-                )
-              `,
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <section className="bg-[#F7F6F4] pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <TreePine className="w-6 h-6 text-[#949089]" />
             <span className="text-[#949089] font-sans text-sm uppercase tracking-[0.2em]">
@@ -208,10 +190,10 @@ export default function WoodSpecies() {
             </span>
             <TreePine className="w-6 h-6 text-[#949089]" />
           </div>
-          <h1 className="font-serif text-5xl md:text-7xl text-white mb-6 leading-tight">
+          <h1 className="font-serif text-5xl md:text-6xl text-[#242019] mb-6 leading-tight">
             Wood Species
           </h1>
-          <p className="text-lg md:text-xl text-[#E0E1E1] font-sans max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[#949089] font-sans max-w-2xl mx-auto leading-relaxed">
             Seven carefully selected hardwoods, each with its own character and story.
           </p>
         </div>
@@ -276,7 +258,7 @@ export default function WoodSpecies() {
       </section>
 
       {/* Comparison Note */}
-      <section className="bg-[#242019] py-16 md:py-20">
+      <section className="bg-white py-16 md:py-20 border-t border-[#E0E1E1]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <TreePine className="w-5 h-5 text-[#949089]" />
@@ -285,13 +267,13 @@ export default function WoodSpecies() {
             </span>
             <TreePine className="w-5 h-5 text-[#949089]" />
           </div>
-          <p className="font-sans text-[#E0E1E1] text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="font-sans text-[#242019]/70 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
             All seven wood species are available across all door styles with the following
             exceptions:{' '}
-            <span className="text-white font-medium">Bryant</span> is available in
+            <span className="text-[#242019] font-medium">Bryant</span> is available in
             Maple, Cherry, Alder, and Paint-Grade Maple (4 species).{' '}
-            <span className="text-white font-medium">Iverson</span> and{' '}
-            <span className="text-white font-medium">Erving</span> are MDF only and do
+            <span className="text-[#242019] font-medium">Iverson</span> and{' '}
+            <span className="text-[#242019] font-medium">Erving</span> are MDF only and do
             not use natural wood species.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
