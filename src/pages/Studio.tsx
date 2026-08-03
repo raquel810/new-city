@@ -70,8 +70,10 @@ export default function Studio() {
   const [finishType, setFinishType] = useState<'paint' | 'stain'>('paint');
   const [selectedFinish, setSelectedFinish] = useState<string | null>(null);
   const [twoTone, setTwoTone] = useState(false);
-  const [selectedUpperFinish, setSelectedUpperFinish] = useState<string | null>(null);
-  const [selectedLowerFinish, setSelectedLowerFinish] = useState<string | null>(null);
+  const [finishType1, setFinishType1] = useState<'paint' | 'stain'>('paint');
+  const [finishType2, setFinishType2] = useState<'paint' | 'stain'>('paint');
+  const [selectedFinish1, setSelectedFinish1] = useState<string | null>(null);
+  const [selectedFinish2, setSelectedFinish2] = useState<string | null>(null);
   const [customColor, setCustomColor] = useState(false);
 
   const showStain = selectedWood !== 'MDF';
@@ -79,29 +81,49 @@ export default function Studio() {
   useEffect(() => {
     if (selectedWood === 'MDF') {
       setFinishType('paint');
+      setFinishType1('paint');
+      setFinishType2('paint');
     }
   }, [selectedWood]);
 
   useEffect(() => {
     const validPaint = (name: string) => name in paintColors;
     const validStain = (name: string) => name in stainColors;
-    const valid = finishType === 'paint' ? validPaint : validStain;
-    if (selectedFinish && !valid(selectedFinish)) setSelectedFinish(null);
-    if (selectedUpperFinish && !valid(selectedUpperFinish)) setSelectedUpperFinish(null);
-    if (selectedLowerFinish && !valid(selectedLowerFinish)) setSelectedLowerFinish(null);
+    if (selectedFinish) {
+      const valid = finishType === 'paint' ? validPaint : validStain;
+      if (!valid(selectedFinish)) setSelectedFinish(null);
+    }
   }, [finishType]);
 
   useEffect(() => {
+    const validPaint = (name: string) => name in paintColors;
+    const validStain = (name: string) => name in stainColors;
+    if (selectedFinish1) {
+      const valid = finishType1 === 'paint' ? validPaint : validStain;
+      if (!valid(selectedFinish1)) setSelectedFinish1(null);
+    }
+  }, [finishType1]);
+
+  useEffect(() => {
+    const validPaint = (name: string) => name in paintColors;
+    const validStain = (name: string) => name in stainColors;
+    if (selectedFinish2) {
+      const valid = finishType2 === 'paint' ? validPaint : validStain;
+      if (!valid(selectedFinish2)) setSelectedFinish2(null);
+    }
+  }, [finishType2]);
+
+  useEffect(() => {
     if (!twoTone) {
-      setSelectedUpperFinish(null);
-      setSelectedLowerFinish(null);
+      setSelectedFinish1(null);
+      setSelectedFinish2(null);
     } else {
       setSelectedFinish(null);
     }
   }, [twoTone]);
 
   const finishComplete = twoTone
-    ? selectedUpperFinish && selectedLowerFinish
+    ? selectedFinish1 && selectedFinish2
     : selectedFinish;
 
   const allSelected =
@@ -125,6 +147,7 @@ export default function Studio() {
             src="/THESTUDIO_hc_logo.png"
             alt="The Studio"
             className="mx-auto mb-6 h-20 sm:h-24 object-contain"
+            style={{ filter: 'brightness(0.2)' }}
           />
           <p className="font-sans text-[#949089] text-lg sm:text-xl max-w-2xl mx-auto">
             Build your perfect door, step by step. Choose your edge profiles, panel style, wood, and finish.
@@ -233,56 +256,60 @@ export default function Studio() {
             />
             <span className="font-sans text-sm text-[#242019]">
               Two-tone kitchen
-              <span className="text-[#949089] ml-1">(upper &amp; lower cabinets)</span>
+              <span className="text-[#949089] ml-1">(pick two colors)</span>
             </span>
           </label>
 
-          {/* Finish type tabs */}
-          <div className="flex gap-1 mb-4 bg-[#E0E1E1] rounded-lg p-1 w-fit">
-            <button
-              onClick={() => setFinishType('paint')}
-              className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
-                finishType === 'paint'
-                  ? 'bg-white text-[#242019] shadow-sm'
-                  : 'text-[#949089] hover:text-[#242019]'
-              }`}
-            >
-              <Palette className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
-              Paint
-            </button>
-            {showStain && (
-              <button
-                onClick={() => setFinishType('stain')}
-                className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
-                  finishType === 'stain'
-                    ? 'bg-white text-[#242019] shadow-sm'
-                    : 'text-[#949089] hover:text-[#242019]'
-                }`}
-              >
-                <TreePine className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
-                Stain
-              </button>
-            )}
-          </div>
-
           {twoTone ? (
             <TwoToneSelector
-              finishType={finishType}
+              showStain={showStain}
               paintSwatches={paintSwatches}
               stainColors={stainColors}
-              selectedUpper={selectedUpperFinish}
-              selectedLower={selectedLowerFinish}
-              onSelectUpper={setSelectedUpperFinish}
-              onSelectLower={setSelectedLowerFinish}
+              finishType1={finishType1}
+              finishType2={finishType2}
+              onFinishType1={setFinishType1}
+              onFinishType2={setFinishType2}
+              selected1={selectedFinish1}
+              selected2={selectedFinish2}
+              onSelect1={setSelectedFinish1}
+              onSelect2={setSelectedFinish2}
             />
           ) : (
-            <ColorSwatchGrid
-              finishType={finishType}
-              paintSwatches={paintSwatches}
-              stainColors={stainColors}
-              selected={selectedFinish}
-              onSelect={setSelectedFinish}
-            />
+            <>
+              <div className="flex gap-1 mb-4 bg-[#E0E1E1] rounded-lg p-1 w-fit">
+                <button
+                  onClick={() => setFinishType('paint')}
+                  className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
+                    finishType === 'paint'
+                      ? 'bg-white text-[#242019] shadow-sm'
+                      : 'text-[#949089] hover:text-[#242019]'
+                  }`}
+                >
+                  <Palette className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
+                  Paint
+                </button>
+                {showStain && (
+                  <button
+                    onClick={() => setFinishType('stain')}
+                    className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
+                      finishType === 'stain'
+                        ? 'bg-white text-[#242019] shadow-sm'
+                        : 'text-[#949089] hover:text-[#242019]'
+                  }`}
+                  >
+                    <TreePine className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
+                    Stain
+                  </button>
+                )}
+              </div>
+              <ColorSwatchGrid
+                finishType={finishType}
+                paintSwatches={paintSwatches}
+                stainColors={stainColors}
+                selected={selectedFinish}
+                onSelect={setSelectedFinish}
+              />
+            </>
           )}
 
           {/* Custom Color */}
@@ -320,8 +347,8 @@ export default function Studio() {
               <SummaryField label="Wood Species" value={selectedWood} />
               {twoTone ? (
                 <>
-                  <SummaryField label="Upper Finish" value={selectedUpperFinish ? `${selectedUpperFinish} (${finishType})` : null} />
-                  <SummaryField label="Lower Finish" value={selectedLowerFinish ? `${selectedLowerFinish} (${finishType})` : null} />
+                  <SummaryField label="Color 1" value={selectedFinish1 ? `${selectedFinish1} (${finishType1})` : null} />
+                  <SummaryField label="Color 2" value={selectedFinish2 ? `${selectedFinish2} (${finishType2})` : null} />
                 </>
               ) : (
                 <SummaryField label="Finish" value={selectedFinish ? `${selectedFinish} (${finishType})` : null} />
@@ -478,37 +505,73 @@ function ColorSwatchGrid({
 }
 
 function TwoToneSelector({
-  finishType,
+  showStain,
   paintSwatches,
   stainColors,
-  selectedUpper,
-  selectedLower,
-  onSelectUpper,
-  onSelectLower,
+  finishType1,
+  finishType2,
+  onFinishType1,
+  onFinishType2,
+  selected1,
+  selected2,
+  onSelect1,
+  onSelect2,
 }: {
-  finishType: 'paint' | 'stain';
+  showStain: boolean;
   paintSwatches: [string, string][];
   stainColors: Record<string, StainEntry>;
-  selectedUpper: string | null;
-  selectedLower: string | null;
-  onSelectUpper: (name: string) => void;
-  onSelectLower: (name: string) => void;
+  finishType1: 'paint' | 'stain';
+  finishType2: 'paint' | 'stain';
+  onFinishType1: (t: 'paint' | 'stain') => void;
+  onFinishType2: (t: 'paint' | 'stain') => void;
+  selected1: string | null;
+  selected2: string | null;
+  onSelect1: (name: string) => void;
+  onSelect2: (name: string) => void;
 }) {
   return (
     <div className="space-y-6">
-      {(['upper', 'lower'] as const).map((zone) => {
-        const selected = zone === 'upper' ? selectedUpper : selectedLower;
-        const onSelect = zone === 'upper' ? onSelectUpper : onSelectLower;
+      {([1, 2] as const).map((slot) => {
+        const finishType = slot === 1 ? finishType1 : finishType2;
+        const setFinishType = slot === 1 ? onFinishType1 : onFinishType2;
+        const selected = slot === 1 ? selected1 : selected2;
+        const onSelect = slot === 1 ? onSelect1 : onSelect2;
         return (
-          <div key={zone}>
-            <p className="font-sans text-sm font-semibold text-[#242019] mb-2 uppercase tracking-wide">
-              {zone === 'upper' ? 'Upper Cabinets' : 'Lower Cabinets'}
-              {selected && (
-                <span className="ml-2 text-xs font-normal text-[#949089] normal-case tracking-normal">
-                  — {selected}
-                </span>
-              )}
-            </p>
+          <div key={slot}>
+            <div className="flex items-center justify-between mb-2">
+              <p className="font-sans text-sm font-semibold text-[#242019] uppercase tracking-wide">
+                Color {slot}
+                {selected && (
+                  <span className="ml-2 text-xs font-normal text-[#949089] normal-case tracking-normal">
+                    — {selected}
+                  </span>
+                )}
+              </p>
+              <div className="flex gap-1 bg-[#E0E1E1] rounded-lg p-1">
+                <button
+                  onClick={() => setFinishType('paint')}
+                  className={`px-3 py-1.5 rounded-md text-xs font-sans font-medium transition-all ${
+                    finishType === 'paint'
+                      ? 'bg-white text-[#242019] shadow-sm'
+                      : 'text-[#949089] hover:text-[#242019]'
+                  }`}
+                >
+                  Paint
+                </button>
+                {showStain && (
+                  <button
+                    onClick={() => setFinishType('stain')}
+                    className={`px-3 py-1.5 rounded-md text-xs font-sans font-medium transition-all ${
+                      finishType === 'stain'
+                        ? 'bg-white text-[#242019] shadow-sm'
+                        : 'text-[#949089] hover:text-[#242019]'
+                    }`}
+                  >
+                    Stain
+                  </button>
+                )}
+              </div>
+            </div>
             {finishType === 'stain' ? (
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                 {Object.entries(stainColors).map(([name, { image }]) => (
