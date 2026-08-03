@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X, Camera } from 'lucide-react';
 
 interface Project {
@@ -6,6 +7,7 @@ interface Project {
   title: string;
   description: string;
   images: string[];
+  href?: string;
 }
 
 const projects: Project[] = [
@@ -18,8 +20,12 @@ const projects: Project[] = [
   {
     id: 2,
     title: 'The Nguyen Residence',
-    description: 'White shaker with natural wood accents',
-    images: Array.from({ length: 8 }, (_, i) => `/projects/nguyen/nguyen-project_0${i}.jpg`),
+    description: 'Duncan door style in Arctic with White Oak island',
+    href: '/gallery/nguyen',
+    images: [
+      '/projects/nguyen/nguyen_post-00.jpg',
+      ...Array.from({ length: 47 }, (_, i) => `/projects/nguyen/nguyen_post-${i + 1}.jpg`),
+    ],
   },
   {
     id: 3,
@@ -30,11 +36,16 @@ const projects: Project[] = [
 ];
 
 export default function Gallery() {
+  const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = (project: Project) => {
+    if (project.href) {
+      navigate(project.href);
+      return;
+    }
     setSelectedProject(project);
     setCurrentImageIndex(0);
     setIsModalOpen(true);

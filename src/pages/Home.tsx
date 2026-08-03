@@ -9,7 +9,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/schneide-project_00.jpg)',
+            backgroundImage: 'url(/projects/nguyen/nguyen_post-00.jpg)',
           }}
         >
           <div className="absolute inset-0 bg-white/50" />
@@ -44,8 +44,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="overflow-hidden rounded-lg">
             <img
-              src="/projects/nguyen/nguyen-project_02.jpg"
-              alt="Harris Cabinetry custom kitchen project"
+              src="/projects/nguyen/nguyen_post-23.jpg"
+              alt="Harris Cabinetry custom appliance garage detail"
               className="w-full h-[400px] lg:h-[550px] object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
@@ -156,7 +156,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/projects/carsten/carsten-project_00.jpg)',
+            backgroundImage: 'url(/projects/nguyen/nguyen_post-40.jpg)',
           }}
         >
           <div className="absolute inset-0 bg-white/60" />

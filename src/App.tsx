@@ -7,6 +7,7 @@ import WoodSpecies from '@/pages/WoodSpecies';
 import Gallery from '@/pages/Gallery';
 import Studio from '@/pages/Studio';
 import Contact from '@/pages/Contact';
+import ProjectNguyen from '@/pages/ProjectNguyen';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/finishes" element={<Finishes />} />
         <Route path="/wood-species" element={<WoodSpecies />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
