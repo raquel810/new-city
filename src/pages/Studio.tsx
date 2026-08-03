@@ -33,17 +33,31 @@ const woodSpecies = [
 type WoodSpecies = (typeof woodSpecies)[number];
 
 const paintColors: Record<string, string> = {
-  Polar: '#FEFEFE', Arctic: '#F0F0EC', Moonlight: '#EDE8DF',
-  Stone: '#C4BFAD', Slate: '#6B6B6B', Sage: '#A3A88F',
-  Basil: '#4A5A3F', Drift: '#B8B0A2', Harbor: '#6D7A84',
-  Navy: '#2B3545', Nyx: '#2C2C2C',
+  Polar: '#F8F7F1',
+  Arctic: '#F1EDEC',
+  Moonlight: '#DFD3C3',
+  Stone: '#CCC8BF',
+  Slate: '#7F817E',
+  Sage: '#95978A',
+  Basil: '#626F61',
+  Drift: '#C6DDF0',
+  Harbor: '#758B9A',
+  Navy: '#35454E',
+  Orbital: '#2F2F30',
 };
 
-const stainColors: Record<string, string> = {
-  Oat: '#E8D5B0', Honey: '#C8A050', Fawn: '#B08860',
-  Rye: '#9A7040', Reed: '#7A6830', Port: '#6B2A2A',
-  Cask: '#6B4A2A', Alcove: '#4A3020', Pumice: '#8A8580',
-  Shale: '#5A5550', Graphite: '#3A3530',
+const stainColors: Record<string, { hex: string; image: string }> = {
+  Oat:      { hex: '#E8D5B0', image: '/oat_hc-stain.jpg' },
+  Honey:    { hex: '#C8A050', image: '/honey_hc-stain.jpg' },
+  Fawn:     { hex: '#B08860', image: '/fawn_hc-stain.jpg' },
+  Rye:      { hex: '#9A7040', image: '/rye_hc-stain.jpg' },
+  Reed:     { hex: '#7A6830', image: '/reed_hc-stain.jpg' },
+  Port:     { hex: '#6B2A2A', image: '/port_hc-stain.jpg' },
+  Cask:     { hex: '#6B4A2A', image: '/cask_hc-stain.jpg' },
+  Alcove:   { hex: '#4A3020', image: '/alcove_hc-stain.jpg' },
+  Pumice:   { hex: '#8A8580', image: '/pumice_hc-stain.jpg' },
+  Shale:    { hex: '#5A5550', image: '/shale_hc-stain.jpg' },
+  Graphite: { hex: '#3A3530', image: '/graphite_hc-stain.jpg' },
 };
 
 // --- COMPONENT ---
@@ -55,6 +69,9 @@ export default function Studio() {
   const [selectedWood, setSelectedWood] = useState<WoodSpecies | null>(null);
   const [finishType, setFinishType] = useState<'paint' | 'stain'>('paint');
   const [selectedFinish, setSelectedFinish] = useState<string | null>(null);
+  const [twoTone, setTwoTone] = useState(false);
+  const [selectedUpperFinish, setSelectedUpperFinish] = useState<string | null>(null);
+  const [selectedLowerFinish, setSelectedLowerFinish] = useState<string | null>(null);
   const [customColor, setCustomColor] = useState(false);
 
   const showStain = selectedWood !== 'MDF';
@@ -62,35 +79,53 @@ export default function Studio() {
   useEffect(() => {
     if (selectedWood === 'MDF') {
       setFinishType('paint');
-      if (selectedFinish && !(selectedFinish in paintColors)) {
-        setSelectedFinish(null);
-      }
     }
   }, [selectedWood]);
 
   useEffect(() => {
-    const colors = finishType === 'paint' ? paintColors : stainColors;
-    if (selectedFinish && !(selectedFinish in colors)) {
+    const validPaint = (name: string) => name in paintColors;
+    const validStain = (name: string) => name in stainColors;
+    const valid = finishType === 'paint' ? validPaint : validStain;
+    if (selectedFinish && !valid(selectedFinish)) setSelectedFinish(null);
+    if (selectedUpperFinish && !valid(selectedUpperFinish)) setSelectedUpperFinish(null);
+    if (selectedLowerFinish && !valid(selectedLowerFinish)) setSelectedLowerFinish(null);
+  }, [finishType]);
+
+  useEffect(() => {
+    if (!twoTone) {
+      setSelectedUpperFinish(null);
+      setSelectedLowerFinish(null);
+    } else {
       setSelectedFinish(null);
     }
-  }, [finishType]);
+  }, [twoTone]);
+
+  const finishComplete = twoTone
+    ? selectedUpperFinish && selectedLowerFinish
+    : selectedFinish;
 
   const allSelected =
     selectedOuterEdge &&
     selectedInnerEdge &&
     selectedCenterPanel &&
     selectedWood &&
-    selectedFinish;
+    finishComplete;
 
   const getSelectedName = (list: { id: string; name: string }[], id: string | null) =>
     list.find((item) => item.id === id)?.name ?? null;
+
+  const paintSwatches = Object.entries(paintColors);
 
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Section */}
       <section className="bg-[#242019] text-white py-16 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl mb-4">The Studio</h1>
+          <img
+            src="/THESTUDIO_hc_logo.png"
+            alt="The Studio"
+            className="mx-auto mb-6 h-20 sm:h-24 object-contain"
+          />
           <p className="font-sans text-[#E0E1E1] text-lg sm:text-xl max-w-2xl mx-auto">
             Build your perfect door, step by step. Choose your edge profiles, panel style, wood, and finish.
           </p>
@@ -178,7 +213,31 @@ export default function Studio() {
         <div>
           <StepHeader number={5} title="Finish" icon={<Paintbrush className="w-5 h-5 text-[#949089]" />} />
 
-          {/* Tabs */}
+          {/* Two-tone toggle */}
+          <label className="flex items-center gap-3 mb-5 cursor-pointer group w-fit">
+            <div
+              onClick={() => setTwoTone(!twoTone)}
+              className={`relative w-10 h-5 rounded-full transition-colors duration-200 ${
+                twoTone ? 'bg-[#242019]' : 'bg-[#D0CFC9]'
+              }`}
+            >
+              <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
+                twoTone ? 'translate-x-5' : 'translate-x-0.5'
+              }`} />
+            </div>
+            <input
+              type="checkbox"
+              checked={twoTone}
+              onChange={(e) => setTwoTone(e.target.checked)}
+              className="sr-only"
+            />
+            <span className="font-sans text-sm text-[#242019]">
+              Two-tone kitchen
+              <span className="text-[#949089] ml-1">(upper &amp; lower cabinets)</span>
+            </span>
+          </label>
+
+          {/* Finish type tabs */}
           <div className="flex gap-1 mb-4 bg-[#E0E1E1] rounded-lg p-1 w-fit">
             <button
               onClick={() => setFinishType('paint')}
@@ -206,44 +265,25 @@ export default function Studio() {
             )}
           </div>
 
-          {/* Color Swatches */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {Object.entries(finishType === 'paint' ? paintColors : stainColors).map(
-              ([name, hex]) => (
-                <button
-                  key={name}
-                  onClick={() => setSelectedFinish(name)}
-                  className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 ${
-                    selectedFinish === name
-                      ? 'bg-[#242019]/5 ring-2 ring-[#242019] ring-offset-1'
-                      : 'hover:bg-[#E0E1E1]/50'
-                  }`}
-                >
-                  <div
-                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-transform duration-200 group-hover:scale-110 ${
-                      selectedFinish === name ? 'border-[#242019]' : 'border-[#E0E1E1]'
-                    }`}
-                    style={{ backgroundColor: hex }}
-                  >
-                    {selectedFinish === name && (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Check
-                          className={`w-4 h-4 ${
-                            ['Polar', 'Arctic', 'Moonlight', 'Oat'].includes(name)
-                              ? 'text-[#242019]'
-                              : 'text-white'
-                          }`}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  <span className="text-xs font-sans text-[#242019] text-center leading-tight">
-                    {name}
-                  </span>
-                </button>
-              )
-            )}
-          </div>
+          {twoTone ? (
+            <TwoToneSelector
+              finishType={finishType}
+              paintSwatches={paintSwatches}
+              stainColors={stainColors}
+              selectedUpper={selectedUpperFinish}
+              selectedLower={selectedLowerFinish}
+              onSelectUpper={setSelectedUpperFinish}
+              onSelectLower={setSelectedLowerFinish}
+            />
+          ) : (
+            <ColorSwatchGrid
+              finishType={finishType}
+              paintSwatches={paintSwatches}
+              stainColors={stainColors}
+              selected={selectedFinish}
+              onSelect={setSelectedFinish}
+            />
+          )}
 
           {/* Custom Color */}
           <label className="flex items-center gap-3 mt-6 cursor-pointer group">
@@ -278,7 +318,14 @@ export default function Studio() {
               <SummaryField label="Inner Edge" value={getSelectedName(innerEdges, selectedInnerEdge)} />
               <SummaryField label="Center Panel" value={getSelectedName(centerPanels, selectedCenterPanel)} />
               <SummaryField label="Wood Species" value={selectedWood} />
-              <SummaryField label="Finish" value={selectedFinish ? `${selectedFinish} (${finishType})` : null} />
+              {twoTone ? (
+                <>
+                  <SummaryField label="Upper Finish" value={selectedUpperFinish ? `${selectedUpperFinish} (${finishType})` : null} />
+                  <SummaryField label="Lower Finish" value={selectedLowerFinish ? `${selectedLowerFinish} (${finishType})` : null} />
+                </>
+              ) : (
+                <SummaryField label="Finish" value={selectedFinish ? `${selectedFinish} (${finishType})` : null} />
+              )}
             </div>
 
             {customColor && (
@@ -371,7 +418,7 @@ function SelectableImageCard({
   );
 }
 
-function SummaryField({ label, value }: { label: string; value: string | null }) {
+function SummaryField({ label, value }: { label: string; value: string | null | undefined }) {
   return (
     <div>
       <p className="text-xs font-sans uppercase tracking-wider text-[#949089] mb-1">
@@ -381,5 +428,192 @@ function SummaryField({ label, value }: { label: string; value: string | null })
         {value || <span className="text-[#949089]">--</span>}
       </p>
     </div>
+  );
+}
+
+type StainEntry = { hex: string; image: string };
+
+function ColorSwatchGrid({
+  finishType,
+  paintSwatches,
+  stainColors,
+  selected,
+  onSelect,
+}: {
+  finishType: 'paint' | 'stain';
+  paintSwatches: [string, string][];
+  stainColors: Record<string, StainEntry>;
+  selected: string | null;
+  onSelect: (name: string) => void;
+}) {
+  if (finishType === 'stain') {
+    return (
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+        {Object.entries(stainColors).map(([name, { image }]) => (
+          <StainSwatch
+            key={name}
+            name={name}
+            image={image}
+            selected={selected === name}
+            onSelect={onSelect}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+      {paintSwatches.map(([name, hex]) => (
+        <PaintSwatch
+          key={name}
+          name={name}
+          hex={hex}
+          selected={selected === name}
+          onSelect={onSelect}
+        />
+      ))}
+    </div>
+  );
+}
+
+function TwoToneSelector({
+  finishType,
+  paintSwatches,
+  stainColors,
+  selectedUpper,
+  selectedLower,
+  onSelectUpper,
+  onSelectLower,
+}: {
+  finishType: 'paint' | 'stain';
+  paintSwatches: [string, string][];
+  stainColors: Record<string, StainEntry>;
+  selectedUpper: string | null;
+  selectedLower: string | null;
+  onSelectUpper: (name: string) => void;
+  onSelectLower: (name: string) => void;
+}) {
+  return (
+    <div className="space-y-6">
+      {(['upper', 'lower'] as const).map((zone) => {
+        const selected = zone === 'upper' ? selectedUpper : selectedLower;
+        const onSelect = zone === 'upper' ? onSelectUpper : onSelectLower;
+        return (
+          <div key={zone}>
+            <p className="font-sans text-sm font-semibold text-[#242019] mb-2 uppercase tracking-wide">
+              {zone === 'upper' ? 'Upper Cabinets' : 'Lower Cabinets'}
+              {selected && (
+                <span className="ml-2 text-xs font-normal text-[#949089] normal-case tracking-normal">
+                  — {selected}
+                </span>
+              )}
+            </p>
+            {finishType === 'stain' ? (
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                {Object.entries(stainColors).map(([name, { image }]) => (
+                  <StainSwatch
+                    key={name}
+                    name={name}
+                    image={image}
+                    selected={selected === name}
+                    onSelect={onSelect}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                {paintSwatches.map(([name, hex]) => (
+                  <PaintSwatch
+                    key={name}
+                    name={name}
+                    hex={hex}
+                    selected={selected === name}
+                    onSelect={onSelect}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function PaintSwatch({
+  name,
+  hex,
+  selected,
+  onSelect,
+}: {
+  name: string;
+  hex: string;
+  selected: boolean;
+  onSelect: (name: string) => void;
+}) {
+  const lightColors = ['Polar', 'Arctic', 'Moonlight', 'Stone', 'Drift'];
+  return (
+    <button
+      onClick={() => onSelect(name)}
+      className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 ${
+        selected
+          ? 'bg-[#242019]/5 ring-2 ring-[#242019] ring-offset-1'
+          : 'hover:bg-[#E0E1E1]/50'
+      }`}
+    >
+      <div
+        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-transform duration-200 group-hover:scale-110 ${
+          selected ? 'border-[#242019]' : 'border-[#E0E1E1]'
+        }`}
+        style={{ backgroundColor: hex }}
+      >
+        {selected && (
+          <div className="w-full h-full flex items-center justify-center">
+            <Check
+              className={`w-4 h-4 ${lightColors.includes(name) ? 'text-[#242019]' : 'text-white'}`}
+            />
+          </div>
+        )}
+      </div>
+      <span className="text-xs font-sans text-[#242019] text-center leading-tight">{name}</span>
+    </button>
+  );
+}
+
+function StainSwatch({
+  name,
+  image,
+  selected,
+  onSelect,
+}: {
+  name: string;
+  image: string;
+  selected: boolean;
+  onSelect: (name: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onSelect(name)}
+      className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 ${
+        selected
+          ? 'bg-[#242019]/5 ring-2 ring-[#242019] ring-offset-1'
+          : 'hover:bg-[#E0E1E1]/50'
+      }`}
+    >
+      <div
+        className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 overflow-hidden transition-transform duration-200 group-hover:scale-110 ${
+          selected ? 'border-[#242019]' : 'border-[#E0E1E1]'
+        }`}
+      >
+        <img src={image} alt={name} className="w-full h-full object-cover" />
+        {selected && (
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <Check className="w-4 h-4 text-white drop-shadow" />
+          </div>
+        )}
+      </div>
+      <span className="text-xs font-sans text-[#242019] text-center leading-tight">{name}</span>
+    </button>
   );
 }
