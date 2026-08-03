@@ -44,7 +44,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="overflow-hidden rounded-lg">
             <img
-              src="/nguyen-project_02.jpg"
+              src="/projects/nguyen/nguyen-project_02.jpg"
               alt="Harris Cabinetry custom kitchen project"
               className="w-full h-[400px] lg:h-[550px] object-cover transition-transform duration-700 hover:scale-105"
             />
@@ -156,18 +156,18 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/carsten-project_00.jpg)',
+            backgroundImage: 'url(/projects/carsten/carsten-project_00.jpg)',
           }}
         >
-          <div className="absolute inset-0 bg-[#242019]/75" />
+          <div className="absolute inset-0 bg-white/60" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
           <p className="font-sans text-[#949089] uppercase tracking-widest text-sm mb-4">
             Interactive Experience
           </p>
-          <h2 className="font-serif text-4xl md:text-6xl text-white mb-6">The Studio</h2>
-          <p className="font-sans text-[#E0E1E1] text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+          <h2 className="font-serif text-4xl md:text-6xl text-[#242019] mb-6">The Studio</h2>
+          <p className="font-sans text-[#242019]/70 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
             Visualize your perfect cabinetry with our interactive door configurator.
             Combine styles, finishes, and wood species to see your vision come to life.
           </p>
