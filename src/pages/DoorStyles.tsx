@@ -122,7 +122,7 @@ function DoorCard({ door }: { door: DoorStyle }) {
 
         {/* Profile overlay on hover */}
         {door.hasImage && (
-          <div className="absolute inset-0 bg-[#242019]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-white/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
             <img
               src={`/${nameLower}_profile.png`}
               alt={`${door.name} edge profile`}
