@@ -163,7 +163,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <p className="font-sans text-[#949089] uppercase tracking-widest text-sm mb-4">
+          <p className="font-sans text-[#242019] uppercase tracking-widest text-sm mb-4">
             Interactive Experience
           </p>
           <h2 className="font-serif text-4xl md:text-6xl text-[#242019] mb-6">The Studio</h2>
