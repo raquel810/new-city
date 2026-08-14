@@ -126,7 +126,7 @@ export default function Home() {
               Intentional Choices
             </h2>
             <p className="font-sans text-[#949089] text-lg max-w-2xl mx-auto">
-              Twelve door profiles. Twenty-two finishes. Seven hardwood species.
+              Thirteen door profiles. Twenty-two finishes. Seven hardwood species.
               Each one selected for a reason.
             </p>
           </div>
@@ -140,7 +140,7 @@ export default function Home() {
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#F7F6F4] flex items-center justify-center group-hover:bg-[#949089]/10 transition-colors duration-300">
                 <DoorOpen className="w-8 h-8 text-[#949089] group-hover:text-[#242019] transition-colors duration-300" />
               </div>
-              <h3 className="font-serif text-2xl text-[#242019] mb-3">12 Door Styles</h3>
+              <h3 className="font-serif text-2xl text-[#242019] mb-3">13 Door Styles</h3>
               <p className="font-sans text-[#949089] leading-relaxed mb-4">
                 Raised panels, recessed flats, slim shakers, clean slabs. Each profile
                 is defined by its edge geometry and proportions.

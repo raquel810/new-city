@@ -181,6 +181,19 @@ const DOOR_STYLES: DoorStyle[] = [
     hasImage: true,
     installedPhotos: [],
   },
+  {
+    name: 'Malone',
+    description:
+      'Malone is a classic flat-panel door with interior and exterior frame detailing that adds depth and character. Its layered profile creates a timeless, tailored look with a more traditional feel.',
+    style: 'Flat-Panel, Mortise & Tenon',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Quartersawn White Oak'],
+    doorImage: '/malone.png',
+    hasImage: true,
+    installedPhotos: [],
+  },
 ];
 
 function DoorCard({ door }: { door: DoorStyle }) {
@@ -291,7 +304,7 @@ export default function DoorStyles() {
             Door Styles
           </h1>
           <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
-            Twelve profiles defined by edge geometry, panel depth, and proportion.
+            Thirteen profiles defined by edge geometry, panel depth, and proportion.
           </p>
         </div>
       </section>
