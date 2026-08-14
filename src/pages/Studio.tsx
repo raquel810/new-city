@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Check, ArrowRight, Palette, TreePine, Paintbrush } from 'lucide-react';
 
 // --- DATA ---
@@ -32,6 +32,8 @@ const woodSpecies = [
 
 type WoodSpecies = (typeof woodSpecies)[number];
 
+const MAX_FINISHES = 3;
+
 const paintColors: Record<string, string> = {
   Polar: '#F8F7F1',
   Arctic: '#F1EDEC',
@@ -60,47 +62,32 @@ const stainColors: Record<string, { hex: string; image: string }> = {
   Graphite: { hex: '#3A3530', image: '/graphite_hc-stain.jpg' },
 };
 
-// --- COMPONENT ---
-
-function getColorType(name: string | null): 'paint' | 'stain' | null {
-  if (!name) return null;
+function getColorType(name: string): 'paint' | 'stain' {
   if (name in paintColors) return 'paint';
-  if (name in stainColors) return 'stain';
-  return null;
+  return 'stain';
 }
 
+// --- COMPONENT ---
+
 export default function Studio() {
+  const navigate = useNavigate();
   const [selectedOuterEdge, setSelectedOuterEdge] = useState<string | null>(null);
   const [selectedInnerEdge, setSelectedInnerEdge] = useState<string | null>(null);
   const [selectedCenterPanel, setSelectedCenterPanel] = useState<string | null>(null);
   const [selectedWood, setSelectedWood] = useState<WoodSpecies | null>(null);
   const [finishType, setFinishType] = useState<'paint' | 'stain'>('paint');
-  const [selectedFinish, setSelectedFinish] = useState<string | null>(null);
-  const [twoTone, setTwoTone] = useState(false);
-  const [selectedFinish1, setSelectedFinish1] = useState<string | null>(null);
-  const [selectedFinish2, setSelectedFinish2] = useState<string | null>(null);
+  const [selectedFinishes, setSelectedFinishes] = useState<string[]>([]);
   const [customColor, setCustomColor] = useState(false);
 
-  const showStain = true;
-
-  const handleWoodChange = (wood: WoodSpecies) => {
-    setSelectedWood(wood);
-
+  const handleFinishToggle = (name: string) => {
+    setSelectedFinishes((prev) => {
+      if (prev.includes(name)) return prev.filter((f) => f !== name);
+      if (prev.length >= MAX_FINISHES) return prev;
+      return [...prev, name];
+    });
   };
 
-  const handleTwoToneToggle = (enabled: boolean) => {
-    setTwoTone(enabled);
-    if (!enabled) {
-      setSelectedFinish1(null);
-      setSelectedFinish2(null);
-    } else {
-      setSelectedFinish(null);
-    }
-  };
-
-  const finishComplete = twoTone
-    ? selectedFinish1 && selectedFinish2
-    : selectedFinish;
+  const finishComplete = selectedFinishes.length > 0;
 
   const allSelected =
     selectedOuterEdge &&
@@ -113,6 +100,18 @@ export default function Studio() {
     list.find((item) => item.id === id)?.name ?? null;
 
   const paintSwatches = Object.entries(paintColors);
+
+  const handleRequestQuote = () => {
+    if (!allSelected) return;
+    const params = new URLSearchParams();
+    params.set('outer', getSelectedName(outerEdges, selectedOuterEdge) ?? '');
+    params.set('inner', getSelectedName(innerEdges, selectedInnerEdge) ?? '');
+    params.set('panel', getSelectedName(centerPanels, selectedCenterPanel) ?? '');
+    params.set('wood', selectedWood ?? '');
+    params.set('finishes', selectedFinishes.map((f) => `${f} (${getColorType(f)})`).join(', '));
+    if (customColor) params.set('custom', '1');
+    navigate(`/contact?${params.toString()}`);
+  };
 
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
@@ -189,7 +188,7 @@ export default function Studio() {
             {woodSpecies.map((wood) => (
               <button
                 key={wood}
-                onClick={() => handleWoodChange(wood)}
+                onClick={() => setSelectedWood(wood)}
                 className={`relative px-3 py-3 rounded-lg border text-sm font-sans transition-all duration-200 ${
                   selectedWood === wood
                     ? 'border-[#242019] bg-[#242019] text-white shadow-md'
@@ -200,7 +199,6 @@ export default function Studio() {
                   <Check className="absolute top-1.5 right-1.5 w-3.5 h-3.5" />
                 )}
                 {wood}
-
               </button>
             ))}
           </div>
@@ -210,76 +208,82 @@ export default function Studio() {
         <div>
           <StepHeader number={5} title="Finish" icon={<Paintbrush className="w-5 h-5 text-[#949089]" />} />
 
-          {/* Two-tone toggle */}
-          <label className="flex items-center gap-3 mb-5 cursor-pointer group w-fit">
-            <div
-              onClick={() => handleTwoToneToggle(!twoTone)}
-              className={`relative w-10 h-5 rounded-full transition-colors duration-200 ${
-                twoTone ? 'bg-[#242019]' : 'bg-[#D0CFC9]'
+          <p className="font-sans text-sm text-[#949089] mb-4">
+            Pick up to {MAX_FINISHES} finishes you like — mix paint and stain if you want.
+            <span className="ml-2 font-medium text-[#242019]">
+              {selectedFinishes.length} of {MAX_FINISHES} selected
+            </span>
+          </p>
+
+          {/* Paint / Stain tabs */}
+          <div className="flex gap-1 mb-4 bg-[#E0E1E1] rounded-lg p-1 w-fit">
+            <button
+              onClick={() => setFinishType('paint')}
+              className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
+                finishType === 'paint'
+                  ? 'bg-white text-[#242019] shadow-sm'
+                  : 'text-[#949089] hover:text-[#242019]'
               }`}
             >
-              <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
-                twoTone ? 'translate-x-5' : 'translate-x-0.5'
-              }`} />
-            </div>
-            <input
-              type="checkbox"
-              checked={twoTone}
-              onChange={(e) => handleTwoToneToggle(e.target.checked)}
-              className="sr-only"
-            />
-            <span className="font-sans text-sm text-[#242019]">
-              Two-tone kitchen
-              <span className="text-[#949089] ml-1">(pick two colors)</span>
-            </span>
-          </label>
+              <Palette className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
+              Paint
+            </button>
+            <button
+              onClick={() => setFinishType('stain')}
+              className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
+                finishType === 'stain'
+                  ? 'bg-white text-[#242019] shadow-sm'
+                  : 'text-[#949089] hover:text-[#242019]'
+              }`}
+            >
+              <TreePine className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
+              Stain
+            </button>
+          </div>
 
-          {twoTone ? (
-            <TwoToneSelector
-              showStain={showStain}
-              paintSwatches={paintSwatches}
-              stainColors={stainColors}
-              selected1={selectedFinish1}
-              selected2={selectedFinish2}
-              onSelect1={setSelectedFinish1}
-              onSelect2={setSelectedFinish2}
-            />
+          {finishType === 'paint' ? (
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+              {paintSwatches.map(([name, hex]) => (
+                <PaintSwatch
+                  key={name}
+                  name={name}
+                  hex={hex}
+                  selected={selectedFinishes.includes(name)}
+                  disabled={!selectedFinishes.includes(name) && selectedFinishes.length >= MAX_FINISHES}
+                  onToggle={handleFinishToggle}
+                />
+              ))}
+            </div>
           ) : (
-            <>
-              <div className="flex gap-1 mb-4 bg-[#E0E1E1] rounded-lg p-1 w-fit">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+              {Object.entries(stainColors).map(([name, { image }]) => (
+                <StainSwatch
+                  key={name}
+                  name={name}
+                  image={image}
+                  selected={selectedFinishes.includes(name)}
+                  disabled={!selectedFinishes.includes(name) && selectedFinishes.length >= MAX_FINISHES}
+                  onToggle={handleFinishToggle}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Selected finishes pills */}
+          {selectedFinishes.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {selectedFinishes.map((name) => (
                 <button
-                  onClick={() => setFinishType('paint')}
-                  className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
-                    finishType === 'paint'
-                      ? 'bg-white text-[#242019] shadow-sm'
-                      : 'text-[#949089] hover:text-[#242019]'
-                  }`}
+                  key={name}
+                  onClick={() => handleFinishToggle(name)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#242019] text-white text-xs font-sans font-medium transition-all hover:bg-[#242019]/80"
                 >
-                  <Palette className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
-                  Paint
+                  {name}
+                  <span className="text-white/60">{getColorType(name)}</span>
+                  <span className="ml-0.5 text-white/80">&times;</span>
                 </button>
-                {showStain && (
-                  <button
-                    onClick={() => setFinishType('stain')}
-                    className={`px-4 py-2 rounded-md text-sm font-sans font-medium transition-all ${
-                      finishType === 'stain'
-                        ? 'bg-white text-[#242019] shadow-sm'
-                        : 'text-[#949089] hover:text-[#242019]'
-                  }`}
-                  >
-                    <TreePine className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
-                    Stain
-                  </button>
-                )}
-              </div>
-              <ColorSwatchGrid
-                finishType={finishType}
-                paintSwatches={paintSwatches}
-                stainColors={stainColors}
-                selected={selectedFinish}
-                onSelect={setSelectedFinish}
-              />
-            </>
+              ))}
+            </div>
           )}
 
           {/* Custom Color */}
@@ -315,14 +319,14 @@ export default function Studio() {
               <SummaryField label="Inner Edge" value={getSelectedName(innerEdges, selectedInnerEdge)} />
               <SummaryField label="Center Panel" value={getSelectedName(centerPanels, selectedCenterPanel)} />
               <SummaryField label="Wood Species" value={selectedWood} />
-              {twoTone ? (
-                <>
-                  <SummaryField label="Color 1" value={selectedFinish1 ? `${selectedFinish1} (${getColorType(selectedFinish1)})` : null} />
-                  <SummaryField label="Color 2" value={selectedFinish2 ? `${selectedFinish2} (${getColorType(selectedFinish2)})` : null} />
-                </>
-              ) : (
-                <SummaryField label="Finish" value={selectedFinish ? `${selectedFinish} (${finishType})` : null} />
-              )}
+              <SummaryField
+                label={selectedFinishes.length > 1 ? 'Finishes' : 'Finish'}
+                value={
+                  selectedFinishes.length > 0
+                    ? selectedFinishes.map((f) => `${f} (${getColorType(f)})`).join(', ')
+                    : null
+                }
+              />
             </div>
 
             {customColor && (
@@ -332,19 +336,18 @@ export default function Studio() {
               </p>
             )}
 
-            <Link
-              to="/contact"
+            <button
+              onClick={handleRequestQuote}
+              disabled={!allSelected}
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-sans font-medium text-sm transition-all duration-200 ${
                 allSelected
-                  ? 'bg-[#242019] text-white hover:bg-[#242019]/90 shadow-md hover:shadow-lg'
-                  : 'bg-[#E0E1E1] text-[#949089] cursor-not-allowed pointer-events-none'
+                  ? 'bg-[#242019] text-white hover:bg-[#242019]/90 shadow-md hover:shadow-lg cursor-pointer'
+                  : 'bg-[#E0E1E1] text-[#949089] cursor-not-allowed'
               }`}
-              aria-disabled={!allSelected}
-              tabIndex={allSelected ? 0 : -1}
             >
               Request a Quote
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
 
             {!allSelected && (
               <p className="text-xs font-sans text-[#949089] mt-2">
@@ -428,167 +431,36 @@ function SummaryField({ label, value }: { label: string; value: string | null | 
   );
 }
 
-type StainEntry = { hex: string; image: string };
-
-function ColorSwatchGrid({
-  finishType,
-  paintSwatches,
-  stainColors,
-  selected,
-  onSelect,
-}: {
-  finishType: 'paint' | 'stain';
-  paintSwatches: [string, string][];
-  stainColors: Record<string, StainEntry>;
-  selected: string | null;
-  onSelect: (name: string) => void;
-}) {
-  if (finishType === 'stain') {
-    return (
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-        {Object.entries(stainColors).map(([name, { image }]) => (
-          <StainSwatch
-            key={name}
-            name={name}
-            image={image}
-            selected={selected === name}
-            onSelect={onSelect}
-          />
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-      {paintSwatches.map(([name, hex]) => (
-        <PaintSwatch
-          key={name}
-          name={name}
-          hex={hex}
-          selected={selected === name}
-          onSelect={onSelect}
-        />
-      ))}
-    </div>
-  );
-}
-
-function TwoToneSelector({
-  showStain,
-  paintSwatches,
-  stainColors,
-  selected1,
-  selected2,
-  onSelect1,
-  onSelect2,
-}: {
-  showStain: boolean;
-  paintSwatches: [string, string][];
-  stainColors: Record<string, StainEntry>;
-  selected1: string | null;
-  selected2: string | null;
-  onSelect1: (name: string) => void;
-  onSelect2: (name: string) => void;
-}) {
-  const [activeSlot, setActiveSlot] = useState<1 | 2>(1);
-  const selected = activeSlot === 1 ? selected1 : selected2;
-  const onSelect = activeSlot === 1 ? onSelect1 : onSelect2;
-
-  return (
-    <div className="space-y-4">
-      {/* Slot selector tabs */}
-      <div className="flex gap-3 mb-2">
-        {([1, 2] as const).map((slot) => {
-          const slotSelected = slot === 1 ? selected1 : selected2;
-          const slotType = getColorType(slotSelected);
-          return (
-            <button
-              key={slot}
-              onClick={() => setActiveSlot(slot)}
-              className={`flex-1 px-4 py-3 rounded-lg border text-sm font-sans font-medium transition-all duration-200 ${
-                activeSlot === slot
-                  ? 'border-[#242019] bg-[#242019]/5 text-[#242019]'
-                  : 'border-[#D0CFC9] text-[#949089] hover:border-[#949089]'
-              }`}
-            >
-              <span className="block">Color {slot}</span>
-              {slotSelected && (
-                <span className="block text-xs font-normal mt-0.5 text-[#949089]">
-                  {slotSelected} ({slotType})
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Paint section */}
-      <div>
-        <p className="flex items-center gap-1.5 font-sans text-xs font-semibold text-[#949089] uppercase tracking-wide mb-2">
-          <Palette className="w-3.5 h-3.5" /> Paint
-        </p>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-          {paintSwatches.map(([name, hex]) => (
-            <PaintSwatch
-              key={name}
-              name={name}
-              hex={hex}
-              selected={selected === name}
-              onSelect={onSelect}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Stain section */}
-      {showStain && (
-        <div>
-          <p className="flex items-center gap-1.5 font-sans text-xs font-semibold text-[#949089] uppercase tracking-wide mb-2">
-            <TreePine className="w-3.5 h-3.5" /> Stain
-          </p>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {Object.entries(stainColors).map(([name, { image }]) => (
-              <StainSwatch
-                key={name}
-                name={name}
-                image={image}
-                selected={selected === name}
-                onSelect={onSelect}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function PaintSwatch({
   name,
   hex,
   selected,
-  onSelect,
+  disabled,
+  onToggle,
 }: {
   name: string;
   hex: string;
   selected: boolean;
-  onSelect: (name: string) => void;
+  disabled: boolean;
+  onToggle: (name: string) => void;
 }) {
   const lightColors = ['Polar', 'Arctic', 'Moonlight', 'Stone', 'Drift'];
   return (
     <button
-      onClick={() => onSelect(name)}
+      onClick={() => onToggle(name)}
+      disabled={disabled}
       className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 ${
         selected
           ? 'bg-[#242019]/5 ring-2 ring-[#242019] ring-offset-1'
+          : disabled
+          ? 'opacity-40 cursor-not-allowed'
           : 'hover:bg-[#E0E1E1]/50'
       }`}
     >
       <div
-        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-transform duration-200 group-hover:scale-110 ${
-          selected ? 'border-[#242019]' : 'border-[#E0E1E1]'
-        }`}
+        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-transform duration-200 ${
+          !disabled ? 'group-hover:scale-110' : ''
+        } ${selected ? 'border-[#242019]' : 'border-[#E0E1E1]'}`}
         style={{ backgroundColor: hex }}
       >
         {selected && (
@@ -608,26 +480,31 @@ function StainSwatch({
   name,
   image,
   selected,
-  onSelect,
+  disabled,
+  onToggle,
 }: {
   name: string;
   image: string;
   selected: boolean;
-  onSelect: (name: string) => void;
+  disabled: boolean;
+  onToggle: (name: string) => void;
 }) {
   return (
     <button
-      onClick={() => onSelect(name)}
+      onClick={() => onToggle(name)}
+      disabled={disabled}
       className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 ${
         selected
           ? 'bg-[#242019]/5 ring-2 ring-[#242019] ring-offset-1'
+          : disabled
+          ? 'opacity-40 cursor-not-allowed'
           : 'hover:bg-[#E0E1E1]/50'
       }`}
     >
       <div
-        className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 overflow-hidden transition-transform duration-200 group-hover:scale-110 ${
-          selected ? 'border-[#242019]' : 'border-[#E0E1E1]'
-        }`}
+        className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 overflow-hidden transition-transform duration-200 ${
+          !disabled ? 'group-hover:scale-110' : ''
+        } ${selected ? 'border-[#242019]' : 'border-[#E0E1E1]'}`}
       >
         <img src={image} alt={name} className="w-full h-full object-cover" />
         {selected && (

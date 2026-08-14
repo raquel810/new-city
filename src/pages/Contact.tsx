@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Send,
   CheckCircle,
@@ -6,6 +7,7 @@ import {
   Phone,
   Mail,
   Clock,
+  Palette,
 } from 'lucide-react';
 
 const PROJECT_TYPES = [
@@ -22,7 +24,45 @@ const encode = (data: Record<string, string>) =>
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
 
+interface StudioSelections {
+  outer: string;
+  inner: string;
+  panel: string;
+  wood: string;
+  finishes: string;
+  custom: boolean;
+}
+
+function parseStudioParams(searchParams: URLSearchParams): StudioSelections | null {
+  const outer = searchParams.get('outer');
+  const inner = searchParams.get('inner');
+  if (!outer || !inner) return null;
+  return {
+    outer: outer,
+    inner: inner,
+    panel: searchParams.get('panel') ?? '',
+    wood: searchParams.get('wood') ?? '',
+    finishes: searchParams.get('finishes') ?? '',
+    custom: searchParams.get('custom') === '1',
+  };
+}
+
+function formatStudioSummary(s: StudioSelections): string {
+  const lines = [
+    `Outer Edge: ${s.outer}`,
+    `Inner Edge: ${s.inner}`,
+    `Center Panel: ${s.panel}`,
+    `Wood Species: ${s.wood}`,
+    `Finish(es): ${s.finishes}`,
+  ];
+  if (s.custom) lines.push('Custom color match requested (ColorDrop)');
+  return lines.join(' | ');
+}
+
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const studioSelections = parseStudioParams(searchParams);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,23 +71,30 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const studioSummaryText = studioSelections ? formatStudioSummary(studioSelections) : '';
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
     setErrorMessage('');
 
+    const payload: Record<string, string> = {
+      'form-name': 'contact',
+      name,
+      email,
+      phone,
+      'project-type': projectType,
+      message,
+    };
+    if (studioSummaryText) {
+      payload['studio-selections'] = studioSummaryText;
+    }
+
     try {
       await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({
-          'form-name': 'contact',
-          name,
-          email,
-          phone,
-          'project-type': projectType,
-          message,
-        }),
+        body: encode(payload),
       });
       setStatus('success');
     } catch {
@@ -73,6 +120,31 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* LEFT: Form */}
           <div className="lg:col-span-3">
+            {/* Studio Selections Card */}
+            {studioSelections && status !== 'success' && (
+              <div className="bg-white rounded-xl border border-[#E0E1E1] p-5 mb-8 shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <Palette className="w-4 h-4 text-[#949089]" />
+                  <h3 className="font-serif text-lg text-[#242019]">Your Studio Selections</h3>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <StudioField label="Outer Edge" value={studioSelections.outer} />
+                  <StudioField label="Inner Edge" value={studioSelections.inner} />
+                  <StudioField label="Center Panel" value={studioSelections.panel} />
+                  <StudioField label="Wood Species" value={studioSelections.wood} />
+                  <div className="col-span-2 sm:col-span-1">
+                    <StudioField label="Finish(es)" value={studioSelections.finishes} />
+                  </div>
+                </div>
+                {studioSelections.custom && (
+                  <p className="text-xs font-sans text-[#949089] mt-2 flex items-center gap-1">
+                    <Palette className="w-3 h-3" />
+                    Custom color match requested
+                  </p>
+                )}
+              </div>
+            )}
+
             {status === 'success' ? (
               <div className="bg-white rounded-2xl p-10 text-center shadow-sm">
                 <div className="flex justify-center mb-6">
@@ -96,6 +168,7 @@ export default function Contact() {
               >
                 {/* Netlify hidden fields */}
                 <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="studio-selections" value={studioSummaryText} />
                 <p className="hidden">
                   <label>
                     Don't fill this out: <input name="bot-field" />
@@ -200,7 +273,7 @@ export default function Contact() {
                     rows={5}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell us about your project — dimensions, style preferences, timeline…"
+                    placeholder="Tell us about your project — dimensions, style preferences, timeline..."
                     className="w-full px-4 py-3 border border-[#E0E1E1] rounded-lg font-sans text-[#242019] placeholder-[#949089] bg-white focus:outline-none focus:ring-2 focus:ring-[#949089] focus:border-transparent transition-shadow resize-vertical"
                   />
                 </div>
@@ -240,12 +313,12 @@ export default function Contact() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                         />
                       </svg>
-                      Sending…
+                      Sending...
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Send Message
+                      {studioSelections ? 'Send Quote Request' : 'Send Message'}
                     </>
                   )}
                 </button>
@@ -261,7 +334,6 @@ export default function Contact() {
               </h2>
 
               <div className="space-y-5">
-                {/* Address */}
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#949089] mt-0.5 flex-shrink-0" />
                   <div className="font-sans text-[#242019]">
@@ -270,7 +342,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-[#949089] flex-shrink-0" />
                   <a
@@ -281,7 +352,6 @@ export default function Contact() {
                   </a>
                 </div>
 
-                {/* Email */}
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#949089] flex-shrink-0" />
                   <a
@@ -292,17 +362,15 @@ export default function Contact() {
                   </a>
                 </div>
 
-                {/* Hours */}
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-[#949089] mt-0.5 flex-shrink-0" />
                   <div className="font-sans text-[#242019]">
-                    <p>Mon–Fri: 8am–5pm</p>
+                    <p>Mon-Fri: 8am-5pm</p>
                     <p>Sat: By appointment</p>
                   </div>
                 </div>
               </div>
 
-              {/* Response Note */}
               <div className="mt-8 pt-6 border-t border-[#E0E1E1]">
                 <p className="font-sans text-sm text-[#949089] italic">
                   We typically respond within 24 hours.
@@ -312,6 +380,15 @@ export default function Contact() {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+function StudioField({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-xs font-sans uppercase tracking-wider text-[#949089] mb-0.5">{label}</p>
+      <p className="font-sans text-sm font-medium text-[#242019]">{value || '--'}</p>
     </div>
   );
 }

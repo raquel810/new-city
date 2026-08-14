@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/Layout';
+import ScrollToTop from '@/components/ScrollToTop';
 import Home from '@/pages/Home';
 import DoorStyles from '@/pages/DoorStyles';
 import Finishes from '@/pages/Finishes';
@@ -12,6 +13,8 @@ import SpecialtyGlass from '@/pages/SpecialtyGlass';
 
 function App() {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
@@ -25,6 +28,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
+    </>
   );
 }
 
