@@ -27,7 +27,7 @@ const centerPanels = [
 
 const woodSpecies = [
   'Maple', 'Hickory', 'Cherry', 'Walnut', 'Alder',
-  'Quarter Sawn White Oak', 'Rift Sawn White Oak', 'Oak',
+  'Quarter Sawn Oak',
 ] as const;
 
 type WoodSpecies = (typeof woodSpecies)[number];

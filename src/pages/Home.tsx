@@ -126,7 +126,7 @@ export default function Home() {
               Intentional Choices
             </h2>
             <p className="font-sans text-[#949089] text-lg max-w-2xl mx-auto">
-              Thirteen door profiles. Twenty-two finishes. Seven hardwood species.
+              Thirteen door profiles. Twenty-two finishes. Six hardwood species.
               Each one selected for a reason.
             </p>
           </div>
