@@ -1,6 +1,45 @@
 import { Link } from 'react-router-dom';
 import { DoorOpen, Palette, TreePine, ArrowRight } from 'lucide-react';
 
+const FEATURED_WORK = [
+  {
+    src: '/featured-images/twotonekitchen2-bryant_photo_0.jpg',
+    alt: 'Two-tone kitchen featuring Bryant door style',
+    doorStyle: 'Bryant',
+    orientation: 'landscape' as const,
+  },
+  {
+    src: '/featured-images/bathroom-duncan_photo_0.jpg',
+    alt: 'Custom bathroom vanity featuring Duncan door style',
+    doorStyle: 'Duncan',
+    orientation: 'portrait' as const,
+  },
+  {
+    src: '/featured-images/kitchen3-jordan_photo_0.jpg',
+    alt: 'Kitchen with Jordan door style cabinetry',
+    doorStyle: 'Jordan',
+    orientation: 'landscape' as const,
+  },
+  {
+    src: '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg',
+    alt: 'Two-tone kitchen with Iverson and Erving door styles',
+    doorStyle: 'Iverson & Erving',
+    orientation: 'landscape' as const,
+  },
+  {
+    src: '/featured-images/twotonekitchen3-russell_photo_0.jpg',
+    alt: 'Kitchen cabinetry featuring Russell slab door style',
+    doorStyle: 'Russell',
+    orientation: 'portrait' as const,
+  },
+  {
+    src: '/featured-images/twotonekitchen5-duncan_photo_2.jpg',
+    alt: 'Two-tone kitchen featuring Duncan door style',
+    doorStyle: 'Duncan',
+    orientation: 'landscape' as const,
+  },
+];
+
 export default function Home() {
   return (
     <main>
@@ -9,7 +48,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/projects/nguyen/nguyen_post-00.jpg)',
+            backgroundImage: 'url(/featured-images/shop_photo_0.jpg)',
           }}
         >
           <div className="absolute inset-0 bg-white/50" />
@@ -44,8 +83,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="overflow-hidden rounded-lg">
             <img
-              src="/projects/nguyen/nguyen_post-23.jpg"
-              alt="Harris Cabinetry custom appliance garage detail"
+              src="/featured-images/twotonekitchen-duncan_photo_1.jpg"
+              alt="Harris Cabinetry custom two-tone kitchen"
               className="w-full h-[400px] lg:h-[550px] object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
@@ -151,12 +190,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured Work Section */}
+      <section className="section-padding bg-[#F7F6F4]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="font-sans text-[#949089] uppercase tracking-widest text-sm mb-4">
+              Our Craftsmanship
+            </p>
+            <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-4">
+              Featured Work
+            </h2>
+            <p className="font-sans text-[#949089] text-lg max-w-2xl mx-auto">
+              A curated look at recent projects across kitchens, bathrooms, and living spaces.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px]">
+            {FEATURED_WORK.map((item, i) => {
+              const spanClasses =
+                item.orientation === 'portrait'
+                  ? 'row-span-2'
+                  : 'col-span-2';
+
+              return (
+                <div
+                  key={i}
+                  className={`group relative overflow-hidden rounded-lg ${spanClasses}`}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#242019]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <Link
+                      to="/door-styles"
+                      className="inline-flex items-center gap-1.5 font-sans text-sm text-white/90 hover:text-white transition-colors"
+                    >
+                      <span className="border-b border-white/40 hover:border-white/80 transition-colors">
+                        {item.doorStyle}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/gallery"
+              className="btn-outline inline-flex items-center gap-2 group transition-all duration-300"
+            >
+              View All Projects
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Studio Teaser Section */}
       <section className="relative py-24 md:py-32">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/projects/nguyen/nguyen_post-40.jpg)',
+            backgroundImage: 'url(/featured-images/twotonekitchen-duncan_photo_4.jpg)',
           }}
         >
           <div className="absolute inset-0 bg-white/60" />

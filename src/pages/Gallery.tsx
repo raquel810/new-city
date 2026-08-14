@@ -6,7 +6,9 @@ interface Project {
   id: number;
   title: string;
   description: string;
+  doorStyles: string[];
   images: string[];
+  coverOrientation: 'landscape' | 'portrait';
   href?: string;
 }
 
@@ -15,12 +17,16 @@ const projects: Project[] = [
     id: 1,
     title: 'The Schneider Residence',
     description: 'Custom walnut cabinetry with modern hardware',
+    doorStyles: [],
+    coverOrientation: 'landscape',
     images: Array.from({ length: 9 }, (_, i) => `/projects/schneider/schneide-project_0${i}.jpg`),
   },
   {
     id: 2,
     title: 'The Nguyen Residence',
     description: 'Duncan door style in Arctic with White Oak island',
+    doorStyles: ['Duncan'],
+    coverOrientation: 'landscape',
     href: '/gallery/nguyen',
     images: [
       '/projects/nguyen/nguyen_post-00.jpg',
@@ -31,7 +37,122 @@ const projects: Project[] = [
     id: 3,
     title: 'The Carsten Residence',
     description: 'Transitional kitchen with custom island',
+    doorStyles: [],
+    coverOrientation: 'landscape',
     images: Array.from({ length: 7 }, (_, i) => `/projects/carsten/carsten-project_0${i}.jpg`),
+  },
+  {
+    id: 4,
+    title: 'Two-Tone Kitchen',
+    description: 'Duncan door style in a striking two-tone palette',
+    doorStyles: ['Duncan'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/twotonekitchen-duncan_photo_4.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_5.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_0.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_1.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_2.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_3.jpg',
+      '/featured-images/twotonekitchen-duncan_photo_6.jpg',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Arched Kitchen',
+    description: 'Bryant door style with arched raised panel details',
+    doorStyles: ['Bryant'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/twotonekitchen2-bryant_photo_0.jpg',
+      '/featured-images/twotonekitchen2-bryant_photo_1.jpg',
+      '/featured-images/twotonekitchen2-bryant_photo_2.jpg',
+    ],
+  },
+  {
+    id: 6,
+    title: 'Modern Slab Kitchen',
+    description: 'Russell slab-style door with clean, contemporary lines',
+    doorStyles: ['Russell'],
+    coverOrientation: 'portrait',
+    images: [
+      '/featured-images/twotonekitchen3-russell_photo_0.jpg',
+      '/featured-images/twotonekitchen3-russell_photo_1.jpg',
+    ],
+  },
+  {
+    id: 7,
+    title: 'Two-Tone MDF Kitchen',
+    description: 'Iverson and Erving paint-grade MDF door styles combined',
+    doorStyles: ['Iverson', 'Erving'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg',
+      '/featured-images/twotonekitchen4-iversonerving_photo_2.jpg',
+      '/featured-images/twotonekitchen4-iversonerving_photo_0.jpg',
+      '/featured-images/twotonekitchen4-iversonerving_photo_1.jpg',
+      '/featured-images/twotonekitchen4-iversonerving_photo_4.jpg',
+      '/featured-images/twotonekitchen4-iversonerving_photo_5.jpg',
+    ],
+  },
+  {
+    id: 8,
+    title: 'Warm Duncan Kitchen',
+    description: 'Duncan door style in warm wood tones',
+    doorStyles: ['Duncan'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/twotonekitchen5-duncan_photo_2.jpg',
+      '/featured-images/twotonekitchen5-duncan_photo_3.jpg',
+      '/featured-images/twotonekitchen5-duncan_photo_0.jpg',
+      '/featured-images/twotonekitchen5-duncan_photo_1.jpg',
+    ],
+  },
+  {
+    id: 9,
+    title: 'Bathroom Vanity',
+    description: 'Custom Duncan door style vanity with clean details',
+    doorStyles: ['Duncan'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/bathroom-duncan_photo_2.jpg',
+      '/featured-images/bathroom-duncan_photo_0.jpg',
+      '/featured-images/bathroom-duncan_photo_1.jpg',
+    ],
+  },
+  {
+    id: 10,
+    title: 'Kitchen & Pantry',
+    description: 'Jordan raised panel cabinetry through kitchen and pantry',
+    doorStyles: ['Jordan'],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/kitchen3-jordan_photo_0.jpg',
+      '/featured-images/kitchen3-jordan_photo_1.jpg',
+      '/featured-images/kitchen4-jordan_photo_0.jpg',
+    ],
+  },
+  {
+    id: 11,
+    title: 'Laundry Rooms',
+    description: 'Duncan and Jordan door styles for functional laundry spaces',
+    doorStyles: ['Duncan', 'Jordan'],
+    coverOrientation: 'portrait',
+    images: [
+      '/featured-images/laundry-duncan_photo_0.jpg',
+      '/featured-images/laundry-duncan_photo_1.jpg',
+      '/featured-images/laundry2-jordan_photo_0.jpg',
+    ],
+  },
+  {
+    id: 12,
+    title: 'The Workshop',
+    description: 'Where every Harris Cabinetry piece begins',
+    doorStyles: [],
+    coverOrientation: 'landscape',
+    images: [
+      '/featured-images/shop_photo_0.jpg',
+    ],
   },
 ];
 
@@ -150,6 +271,18 @@ export default function Gallery() {
                 <p className="mt-1 font-sans text-sm text-[#949089]">
                   {project.description}
                 </p>
+                {project.doorStyles.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {project.doorStyles.map((style) => (
+                      <span
+                        key={style}
+                        className="inline-block px-2 py-0.5 text-xs font-sans font-medium rounded-full bg-[#F7F6F4] text-[#242019]/80 border border-[#E0E1E1]"
+                      >
+                        {style}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </button>
           ))}
@@ -206,40 +339,48 @@ export default function Gallery() {
                 ))}
               </div>
 
-              <button
-                onClick={prevImage}
-                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
+              {selectedProject.images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </>
+              )}
             </div>
 
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {selectedProject.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToImage(index)}
-                  className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-                    index === currentImageIndex
-                      ? 'w-8 bg-[#F7F6F4]'
-                      : 'w-2.5 bg-[#F7F6F4]/40 hover:bg-[#F7F6F4]/60'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
-            </div>
+            {selectedProject.images.length > 1 && (
+              <>
+                <div className="mt-4 flex items-center justify-center gap-2">
+                  {selectedProject.images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToImage(index)}
+                      className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
+                        index === currentImageIndex
+                          ? 'w-8 bg-[#F7F6F4]'
+                          : 'w-2.5 bg-[#F7F6F4]/40 hover:bg-[#F7F6F4]/60'
+                      }`}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
 
-            <p className="mt-3 text-center font-sans text-xs text-[#E0E1E1]/50">
-              {currentImageIndex + 1} / {selectedProject.images.length}
-            </p>
+                <p className="mt-3 text-center font-sans text-xs text-[#E0E1E1]/50">
+                  {currentImageIndex + 1} / {selectedProject.images.length}
+                </p>
+              </>
+            )}
           </div>
         </div>
       )}
