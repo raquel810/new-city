@@ -36,8 +36,8 @@ const projects: Project[] = [
   {
     id: 3,
     title: 'The Carsten Residence',
-    description: 'Transitional kitchen with built-in island storage',
-    doorStyles: [],
+    description: 'Bryant door style in a two-tone transitional kitchen',
+    doorStyles: ['Bryant'],
     coverOrientation: 'landscape',
     images: Array.from({ length: 7 }, (_, i) => `/projects/carsten/carsten-project_0${i}.jpg`),
   },
@@ -58,21 +58,9 @@ const projects: Project[] = [
     ],
   },
   {
-    id: 5,
-    title: 'Arched Kitchen',
-    description: 'Bryant door style with arched raised panel details',
-    doorStyles: ['Bryant'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/twotonekitchen2-bryant_photo_0.jpg',
-      '/featured-images/twotonekitchen2-bryant_photo_1.jpg',
-      '/featured-images/twotonekitchen2-bryant_photo_2.jpg',
-    ],
-  },
-  {
     id: 6,
     title: 'Modern Slab Kitchen',
-    description: 'Russell slab-style door with clean, contemporary lines',
+    description: 'Russell door style with clean, contemporary lines',
     doorStyles: ['Russell'],
     coverOrientation: 'portrait',
     images: [
@@ -123,7 +111,7 @@ const projects: Project[] = [
   {
     id: 10,
     title: 'Kitchen',
-    description: 'Jordan raised panel cabinetry',
+    description: 'Jordan flat-panel cabinetry',
     doorStyles: ['Jordan'],
     coverOrientation: 'landscape',
     images: [

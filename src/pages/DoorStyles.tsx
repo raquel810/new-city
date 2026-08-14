@@ -138,7 +138,7 @@ const DOOR_STYLES: DoorStyle[] = [
     woodSpecies: ['Maple', 'Cherry', 'Oak'],
     hasImage: true,
     installedPhotos: [
-      { src: '/featured-images/twotonekitchen2-bryant_photo_0.jpg', alt: 'Bryant arched kitchen' },
+      { src: '/featured-images/twotonekitchen2-bryant_photo_0.jpg', alt: 'Bryant two-tone kitchen' },
       { src: '/featured-images/twotonekitchen2-bryant_photo_1.jpg', alt: 'Bryant kitchen detail' },
     ],
   },
@@ -165,7 +165,7 @@ const DOOR_STYLES: DoorStyle[] = [
     woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [
-      { src: '/featured-images/twotonekitchen3-russell_photo_0.jpg', alt: 'Russell slab kitchen' },
+      { src: '/featured-images/twotonekitchen3-russell_photo_0.jpg', alt: 'Russell kitchen' },
     ],
   },
   {
