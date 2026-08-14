@@ -131,7 +131,7 @@ export default function Studio() {
             style={{ filter: 'invert(1) brightness(0.25)' }}
           />
           <p className="font-sans text-[#949089] text-lg sm:text-xl max-w-2xl mx-auto">
-            Build your perfect door, step by step. Choose your edge profiles, panel style, wood, and finish.
+            Study the proportions. Pair edge profiles with panel styles, select your species, and test finishes before you commit.
           </p>
         </div>
       </section>

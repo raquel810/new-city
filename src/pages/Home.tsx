@@ -56,17 +56,18 @@ export default function Home() {
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <h1 className="font-serif text-5xl md:text-7xl text-[#242019] mb-6 leading-tight">
-            Crafted Custom Cabinetry
+            Cabinetry Built to Last
           </h1>
           <p className="text-lg md:text-xl text-[#242019]/70 mb-10 max-w-2xl mx-auto font-sans">
-            Where precision woodworking meets timeless artistry — bespoke cabinetry
-            designed and built to elevate every room in your home.
+            Every cabinet we build is held to 1/16" tolerances. Every project is
+            shaped by years of remodeling experience. The result is cabinetry
+            that fits the room, the workflow, and the life inside it.
           </p>
           <Link
             to="/contact"
             className="btn-primary inline-block text-lg px-8 py-4 transition-transform duration-300 hover:scale-105"
           >
-            Start Your Project
+            Begin a Conversation
           </Link>
         </div>
 
@@ -91,26 +92,26 @@ export default function Home() {
 
           <div className="font-sans">
             <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-6">
-              The Harris Difference
+              How We Build
             </h2>
             <div className="w-16 h-1 bg-[#949089] mb-8" />
             <p className="text-[#242019]/80 text-lg leading-relaxed mb-6">
-              At Harris Cabinetry, every piece we create is a testament to hand-crafted
-              excellence. As a family-owned business based in Plainfield, Illinois, we
-              bring generations of woodworking expertise and an unwavering attention to
-              detail to every project.
+              We are a family-owned shop in Plainfield, Illinois. Every door, drawer
+              box, and face frame is built in our facility to 1/16" tolerances. Joints
+              are cut clean, panels are square, and finishes are hand-applied with the
+              patience the material demands.
             </p>
             <p className="text-[#242019]/80 text-lg leading-relaxed mb-8">
-              We believe your home deserves more than mass-produced solutions. Our custom
-              cabinetry is designed and built to fit your unique space, style, and
-              lifestyle — ensuring every joint, finish, and detail is nothing short of
-              perfection.
+              Our team also brings years of hands-on remodeling experience. We
+              understand plumbing offsets, appliance clearances, and how a family
+              actually moves through a kitchen. That means cabinetry designed for
+              the real conditions of your space, not just the look of it.
             </p>
             <Link
               to="/contact"
               className="btn-outline inline-flex items-center gap-2 group transition-all duration-300"
             >
-              Learn More About Us
+              Our Approach
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
@@ -122,11 +123,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-4">
-              Endless Possibilities
+              Intentional Choices
             </h2>
             <p className="font-sans text-[#949089] text-lg max-w-2xl mx-auto">
-              Choose from our extensive collection of styles, finishes, and materials to
-              create cabinetry that is uniquely yours.
+              Twelve door profiles. Twenty-two finishes. Seven hardwood species.
+              Each one selected for a reason.
             </p>
           </div>
 
@@ -141,8 +142,8 @@ export default function Home() {
               </div>
               <h3 className="font-serif text-2xl text-[#242019] mb-3">12 Door Styles</h3>
               <p className="font-sans text-[#949089] leading-relaxed mb-4">
-                From classic raised panels to sleek modern slabs, find the perfect door
-                profile to match your vision.
+                Raised panels, recessed flats, slim shakers, clean slabs. Each profile
+                is defined by its edge geometry and proportions.
               </p>
               <span className="inline-flex items-center gap-1 text-[#242019] font-sans font-medium group-hover:gap-2 transition-all duration-300">
                 Explore Styles <ArrowRight className="w-4 h-4" />
@@ -161,8 +162,8 @@ export default function Home() {
                 22 Standard Finishes
               </h3>
               <p className="font-sans text-[#949089] leading-relaxed mb-4">
-                A curated palette of stains and paints, each hand-applied to enhance the
-                natural beauty of the wood.
+                Eleven stains developed to reveal grain character. Eleven paints
+                formulated for density and durability. All hand-applied.
               </p>
               <span className="inline-flex items-center gap-1 text-[#242019] font-sans font-medium group-hover:gap-2 transition-all duration-300">
                 View Finishes <ArrowRight className="w-4 h-4" />
@@ -179,8 +180,8 @@ export default function Home() {
               </div>
               <h3 className="font-serif text-2xl text-[#242019] mb-3">7 Wood Species</h3>
               <p className="font-sans text-[#949089] leading-relaxed mb-4">
-                Premium hardwoods sourced for their grain, durability, and character —
-                from rich walnut to warm maple.
+                Maple, hickory, cherry, walnut, alder, and two cuts of white oak.
+                Selected for hardness, grain behavior, and how they take finish.
               </p>
               <span className="inline-flex items-center gap-1 text-[#242019] font-sans font-medium group-hover:gap-2 transition-all duration-300">
                 Discover Woods <ArrowRight className="w-4 h-4" />
@@ -195,13 +196,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className="font-sans text-[#949089] uppercase tracking-widest text-sm mb-4">
-              Our Craftsmanship
+              Installed Work
             </p>
             <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-4">
-              Featured Work
+              Recent Projects
             </h2>
             <p className="font-sans text-[#949089] text-lg max-w-2xl mx-auto">
-              A curated look at recent projects across kitchens, bathrooms, and living spaces.
+              Real kitchens, bathrooms, and living spaces. Built, delivered, and in use.
             </p>
           </div>
 
@@ -264,12 +265,13 @@ export default function Home() {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
           <p className="font-sans text-[#242019] uppercase tracking-widest text-sm mb-4">
-            Interactive Experience
+            Door Configurator
           </p>
           <h2 className="font-serif text-4xl md:text-6xl text-[#242019] mb-6">The Studio</h2>
           <p className="font-sans text-[#242019]/70 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            Visualize your perfect cabinetry with our interactive door configurator.
-            Combine styles, finishes, and wood species to see your vision come to life.
+            Study the details before you commit. Pair edge profiles with panel styles,
+            choose your species, and see how different finishes change the character
+            of the wood.
           </p>
           <Link
             to="/studio"
@@ -285,24 +287,24 @@ export default function Home() {
       <section className="section-padding bg-[#F7F6F4]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-6">
-            Ready to Start Your Project?
+            The Best Projects Start with a Conversation
           </h2>
           <p className="font-sans text-[#949089] text-lg mb-10 max-w-2xl mx-auto">
-            Let's bring your vision to life. Schedule a consultation with our design team
-            and discover what Harris Cabinetry can create for your home.
+            Tell us about the space, the constraints, and what matters most to you.
+            We will figure out the rest together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
               className="btn-primary inline-block text-lg px-8 py-4 transition-transform duration-300 hover:scale-105"
             >
-              Schedule a Consultation
+              Start a Conversation
             </Link>
             <Link
               to="/door-styles"
               className="btn-outline inline-flex items-center justify-center gap-2 text-lg px-8 py-4 transition-all duration-300"
             >
-              Browse Our Work
+              View the Gallery
             </Link>
           </div>
         </div>

@@ -16,7 +16,7 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'The Schneider Residence',
-    description: 'Custom walnut cabinetry with modern hardware',
+    description: 'Full walnut cabinetry with integrated hardware',
     doorStyles: [],
     coverOrientation: 'landscape',
     images: Array.from({ length: 9 }, (_, i) => `/projects/schneider/schneide-project_0${i}.jpg`),
@@ -36,7 +36,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: 'The Carsten Residence',
-    description: 'Transitional kitchen with custom island',
+    description: 'Transitional kitchen with built-in island storage',
     doorStyles: [],
     coverOrientation: 'landscape',
     images: Array.from({ length: 7 }, (_, i) => `/projects/carsten/carsten-project_0${i}.jpg`),
@@ -147,7 +147,7 @@ const projects: Project[] = [
   {
     id: 12,
     title: 'The Workshop',
-    description: 'Where every Harris Cabinetry piece begins',
+    description: 'The shop floor where every piece is built to tolerance',
     doorStyles: [],
     coverOrientation: 'landscape',
     images: [
@@ -232,7 +232,7 @@ export default function Gallery() {
             Gallery
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg font-sans text-[#949089]">
-            Explore our portfolio of custom crafted projects.
+            Installed work. Not renders, not samples. Real rooms in daily use.
           </p>
         </div>
       </section>

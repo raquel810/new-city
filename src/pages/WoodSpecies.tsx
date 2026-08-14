@@ -194,7 +194,7 @@ export default function WoodSpecies() {
             Wood Species
           </h1>
           <p className="text-lg md:text-xl text-[#949089] font-sans max-w-2xl mx-auto leading-relaxed">
-            Seven carefully selected hardwoods, each with its own character and story.
+            Seven species selected for hardness, grain behavior, and how they accept finish.
           </p>
         </div>
       </section>

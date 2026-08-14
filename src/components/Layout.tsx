@@ -128,7 +128,7 @@ function Footer() {
           <div className="space-y-4">
             <img src="/HC-white.png" alt="Harris Cabinetry" className="h-10 w-auto" />
             <p className="font-sans text-sm text-brand-taupe leading-relaxed mt-4">
-              Crafted with precision. Built with pride.
+              1/16" tolerances. Permanent construction. Plainfield, IL.
             </p>
           </div>
 

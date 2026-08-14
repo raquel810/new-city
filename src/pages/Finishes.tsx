@@ -68,7 +68,7 @@ export default function Finishes() {
             Finishes
           </h1>
           <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto leading-relaxed">
-            From timeless neutrals to bold statements — find your perfect tone.
+            Twenty-two standard finishes, each developed in-house and hand-applied.
           </p>
         </div>
       </section>
@@ -80,8 +80,8 @@ export default function Finishes() {
             Paint Finishes
           </h2>
           <p className="font-sans text-[#949089] text-center mb-14 max-w-xl mx-auto">
-            Our curated palette of premium paint finishes, each hand-applied for a
-            flawless, lasting result.
+            Eleven paint finishes formulated for density, adhesion, and long-term
+            durability. Each coat is hand-applied and cured between layers.
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-10 justify-items-center">
             {paintColors.map((color) => (
@@ -103,8 +103,8 @@ export default function Finishes() {
             Stain Finishes
           </h2>
           <p className="font-sans text-[#949089] text-center mb-14 max-w-xl mx-auto">
-            Rich wood stains that enhance natural grain, from sun-kissed oaks to
-            deep espresso tones.
+            Eleven stains calibrated to reveal the grain structure of each species.
+            The wood does the talking. The stain just turns up the volume.
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-10 justify-items-center">
             {stainColors.map((color) => (
@@ -129,7 +129,7 @@ export default function Finishes() {
                 ColorDrop
               </h2>
               <p className="font-serif text-lg md:text-xl text-[#949089] italic mb-8">
-                Your Color. Your Vision.
+                Beyond the standard palette.
               </p>
 
               <div className="w-16 h-px bg-[#949089]/40 mb-8" />

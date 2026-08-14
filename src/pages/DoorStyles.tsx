@@ -228,7 +228,7 @@ export default function DoorStyles() {
             Door Styles
           </h1>
           <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
-            12 distinctive profiles, each crafted to define your space.
+            Twelve profiles defined by edge geometry, panel depth, and proportion.
           </p>
         </div>
       </section>
@@ -236,7 +236,7 @@ export default function DoorStyles() {
       {/* Door Styles Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <p className="font-sans text-sm text-[#949089] text-center mb-10">
-          Hover over any door to see its edge profile detail.
+          Hover any door to reveal its cross-section profile.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {DOOR_STYLES.map((door) => (
@@ -249,10 +249,10 @@ export default function DoorStyles() {
       <section className="section-padding bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-3xl md:text-4xl text-[#242019] mb-4">
-            Not sure which style is right?
+            See the details up close
           </h2>
           <p className="font-sans text-[#949089] text-lg mb-8">
-            Try our interactive configurator to see any door style with your choice of finish and wood species.
+            Use the configurator to pair any profile with your choice of species and finish.
           </p>
           <Link
             to="/studio"

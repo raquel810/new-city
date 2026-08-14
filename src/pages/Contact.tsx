@@ -61,10 +61,10 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="bg-[#F7F6F4] pt-32 pb-20 px-4 text-center">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#242019] mb-4">
-          Start Your Project
+          Begin a Conversation
         </h1>
         <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
-          Tell us about your vision. We'll bring it to life.
+          Tell us about the space, the timeline, and what matters most. We start every project by listening.
         </p>
       </section>
 
@@ -257,7 +257,7 @@ export default function Contact() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-8 shadow-sm sticky top-8">
               <h2 className="font-serif text-2xl text-[#242019] mb-6">
-                Visit Our Showroom
+                Visit the Shop
               </h2>
 
               <div className="space-y-5">
