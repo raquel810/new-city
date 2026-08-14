@@ -27,7 +27,7 @@ const centerPanels = [
 
 const woodSpecies = [
   'Maple', 'Hickory', 'Cherry', 'Walnut', 'Alder',
-  'Quarter Sawn White Oak', 'Rift Sawn White Oak', 'MDF',
+  'Quarter Sawn White Oak', 'Rift Sawn White Oak', 'Oak',
 ] as const;
 
 type WoodSpecies = (typeof woodSpecies)[number];
@@ -81,16 +81,11 @@ export default function Studio() {
   const [selectedFinish2, setSelectedFinish2] = useState<string | null>(null);
   const [customColor, setCustomColor] = useState(false);
 
-  const showStain = selectedWood !== 'MDF';
+  const showStain = true;
 
   const handleWoodChange = (wood: WoodSpecies) => {
     setSelectedWood(wood);
-    if (wood === 'MDF') {
-      setFinishType('paint');
-      if (selectedFinish && selectedFinish in stainColors) setSelectedFinish(null);
-      if (selectedFinish1 && selectedFinish1 in stainColors) setSelectedFinish1(null);
-      if (selectedFinish2 && selectedFinish2 in stainColors) setSelectedFinish2(null);
-    }
+
   };
 
   const handleTwoToneToggle = (enabled: boolean) => {
@@ -205,9 +200,7 @@ export default function Studio() {
                   <Check className="absolute top-1.5 right-1.5 w-3.5 h-3.5" />
                 )}
                 {wood}
-                {wood === 'MDF' && (
-                  <span className="block text-xs text-[#949089] mt-0.5">(paint-grade)</span>
-                )}
+
               </button>
             ))}
           </div>

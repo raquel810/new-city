@@ -9,34 +9,66 @@ interface InstalledPhoto {
 interface DoorStyle {
   name: string;
   description: string;
-  availableSpecies: string[];
+  style: string;
+  overlay: string;
+  drawerFront: string;
+  doorProfile: string;
+  woodSpecies: string[];
+  doorImage?: string;
   hasImage: boolean;
   installedPhotos: InstalledPhoto[];
 }
 
-const ALL_SPECIES = [
-  'Maple',
-  'Hickory',
-  'Cherry',
-  'Walnut',
-  'Alder',
-  'Quarter Sawn White Oak',
-  'Rift Sawn White Oak',
-];
-
 const DOOR_STYLES: DoorStyle[] = [
   {
+    name: 'Erving',
+    description:
+      'Erving is a clean slab door style with a modern, understated look. Its flat profile keeps the design simple and refined, allowing wood tone, finish, and hardware to take center stage.',
+    style: 'Slab',
+    overlay: 'Full Overlay',
+    drawerFront: 'Slab',
+    doorProfile: '3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Quartersawn White Oak'],
+    hasImage: true,
+    installedPhotos: [
+      { src: '/featured-images/twotonekitchen4-iversonerving_photo_2.jpg', alt: 'Erving kitchen detail' },
+    ],
+  },
+  {
+    name: 'Iverson',
+    description:
+      'Iverson is a timeless shaker-style door with a clean, versatile profile. Its framed construction adds subtle detail while keeping the overall look simple, balanced, and easy to live with.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '1 3/4" frame, 3/4" thick, 15/16" inset',
+    woodSpecies: ['Maple', 'Oak', 'Quartersawn White Oak'],
+    hasImage: true,
+    installedPhotos: [
+      { src: '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg', alt: 'Iverson and Erving kitchen' },
+    ],
+  },
+  {
     name: 'Sanders',
-    description: 'Full overlay, square outside edge, flat center panel.',
-    availableSpecies: ALL_SPECIES,
+    description:
+      'Sanders is a classic shaker-style door with a crisp 90-degree frame and a clean, versatile look. Its simple profile makes it an easy fit for everything from traditional spaces to more modern interpretations.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 1/2" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [],
   },
   {
     name: 'Duncan',
     description:
-      'Full overlay, square outside edge, flat center panel with slim shaker rail.',
-    availableSpecies: ALL_SPECIES,
+      'Duncan is a refined chamfered shaker door that brings subtle depth to a classic framed profile. Its clean lines and softened interior edge create a look that feels timeless, tailored, and well suited to transitional spaces.',
+    style: 'Flat-Panel, Mortise & Tenon',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '3 1/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Quartersawn White Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [
       { src: '/featured-images/twotonekitchen-duncan_photo_4.jpg', alt: 'Duncan two-tone kitchen' },
@@ -47,40 +79,36 @@ const DOOR_STYLES: DoorStyle[] = [
   {
     name: 'James',
     description:
-      'Full overlay, square outside edge, recessed flat center panel.',
-    availableSpecies: ALL_SPECIES,
+      'James is a beaded shaker-style door with a soft interior detail and timeless appeal. Its rounded profile adds subtle depth and character while keeping the overall look balanced and versatile.',
+    style: 'Flat-Panel, Mortise & Tenon',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [],
   },
   {
     name: 'Payton',
     description:
-      'Full overlay, square outside edge, recessed flat center panel with beaded inner edge.',
-    availableSpecies: ALL_SPECIES,
+      'Payton is a mitered flat-panel door with a tailored profile and understated depth. Its angled frame adds a polished, furniture-like quality while keeping the overall look clean and versatile.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak'],
     hasImage: true,
-    installedPhotos: [],
-  },
-  {
-    name: 'Taylor',
-    description:
-      'Full overlay, slight bevel outside edge, flat center panel with slim shaker rail.',
-    availableSpecies: ALL_SPECIES,
-    hasImage: true,
-    installedPhotos: [],
-  },
-  {
-    name: 'Malone',
-    description:
-      'Full overlay, profiled outside edge, recessed flat center panel.',
-    availableSpecies: ALL_SPECIES,
-    hasImage: false,
     installedPhotos: [],
   },
   {
     name: 'Jordan',
     description:
-      'Full overlay, double stepped outside edge, raised center panel.',
-    availableSpecies: ALL_SPECIES,
+      'Jordan is a mitered flat-panel door with a straight sloped interior profile that adds subtle depth to its tailored frame. Its clean angles create a polished, versatile look well suited to transitional spaces.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 1/2" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [
       { src: '/featured-images/kitchen3-jordan_photo_0.jpg', alt: 'Jordan kitchen cabinetry' },
@@ -90,16 +118,24 @@ const DOOR_STYLES: DoorStyle[] = [
   {
     name: 'Jackson',
     description:
-      'Full overlay, detailed outside edge, raised center panel with unique profile.',
-    availableSpecies: ALL_SPECIES,
+      'Jackson is a mitered flat-panel door with a softly curved interior profile that adds depth and graceful detail. Its contoured frame brings a polished, furniture-inspired character that feels timeless and versatile.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak'],
     hasImage: false,
     installedPhotos: [],
   },
   {
     name: 'Bryant',
     description:
-      'Full overlay, profiled outside edge, arched raised center panel.',
-    availableSpecies: ['Maple', 'Hickory', 'Cherry', 'Walnut'],
+      'Bryant is a mitered flat-panel door with a stepped interior profile, combining a subtle flat reveal with a straight sloped detail. Its tailored frame creates a polished, versatile look for transitional spaces.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak'],
     hasImage: true,
     installedPhotos: [
       { src: '/featured-images/twotonekitchen2-bryant_photo_0.jpg', alt: 'Bryant arched kitchen' },
@@ -107,39 +143,49 @@ const DOOR_STYLES: DoorStyle[] = [
     ],
   },
   {
+    name: 'Taylor',
+    description:
+      'Taylor is a double shaker-style door that builds on a classic framed profile with added depth and detail. Its layered design creates a more tailored, furniture-inspired look while still feeling timeless, balanced, and versatile.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 1/2" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
+    hasImage: true,
+    installedPhotos: [],
+  },
+  {
     name: 'Russell',
     description:
-      'Full overlay, square outside edge, flat panel, slab-style.',
-    availableSpecies: ALL_SPECIES,
+      'Russell is a mitered flat-panel door with a more traditional profile and refined interior detailing. Rich in depth and character, it brings a classic, furniture-inspired quality to spaces that call for a more formal look.',
+    style: 'Flat-Panel, Mitered',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 1/2" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Hickory'],
     hasImage: true,
     installedPhotos: [
       { src: '/featured-images/twotonekitchen3-russell_photo_0.jpg', alt: 'Russell slab kitchen' },
     ],
   },
   {
-    name: 'Iverson',
+    name: 'Barkley',
     description:
-      'Full overlay, square outside edge, flat center panel. 3/4" thick MDF.',
-    availableSpecies: ['Paint-grade MDF'],
+      'Barkley is a refined flat-panel door with mortise and tenon construction and understated interior detailing. Its clean frame and subtle depth create a timeless, tailored look with lasting versatility.',
+    style: 'Flat-Panel, Mortise & Tenon',
+    overlay: 'Full Overlay',
+    drawerFront: '5-Piece or Slab',
+    doorProfile: '2 3/4" frame, 3/4" thick',
+    woodSpecies: ['Maple', 'Cherry', 'Oak', 'Quartersawn White Oak'],
+    doorImage: '/barkley.png',
     hasImage: true,
-    installedPhotos: [
-      { src: '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg', alt: 'Iverson & Erving kitchen' },
-    ],
-  },
-  {
-    name: 'Erving',
-    description:
-      'Full overlay, square outside edge, flat center panel, slim shaker rail. 3/4" thick MDF.',
-    availableSpecies: ['Paint-grade MDF'],
-    hasImage: true,
-    installedPhotos: [
-      { src: '/featured-images/twotonekitchen4-iversonerving_photo_2.jpg', alt: 'Erving kitchen detail' },
-    ],
+    installedPhotos: [],
   },
 ];
 
 function DoorCard({ door }: { door: DoorStyle }) {
   const nameLower = door.name.toLowerCase();
+  const imageSrc = door.doorImage ?? `/${nameLower}_hc-door.jpg`;
 
   return (
     <div className="group bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden border border-[#E0E1E1]">
@@ -147,7 +193,7 @@ function DoorCard({ door }: { door: DoorStyle }) {
       <div className="relative aspect-[3/4] overflow-hidden bg-[#F7F6F4]">
         {door.hasImage ? (
           <img
-            src={`/${nameLower}_hc-door.jpg`}
+            src={imageSrc}
             alt={`${door.name} door style`}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -158,15 +204,13 @@ function DoorCard({ door }: { door: DoorStyle }) {
         )}
 
         {/* Profile overlay on hover */}
-        {door.hasImage && (
-          <div className="absolute inset-0 bg-white/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-            <img
-              src={`/${nameLower}_profile.png`}
-              alt={`${door.name} edge profile`}
-              className="max-w-full max-h-full object-contain drop-shadow-lg"
-            />
-          </div>
-        )}
+        <div className="absolute inset-0 bg-white/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+          <img
+            src={`/${nameLower}_profile.png`}
+            alt={`${door.name} edge profile`}
+            className="max-w-full max-h-full object-contain drop-shadow-lg"
+          />
+        </div>
       </div>
 
       {/* Card Content */}
@@ -178,9 +222,17 @@ function DoorCard({ door }: { door: DoorStyle }) {
           {door.description}
         </p>
 
+        {/* Specifications */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mb-4">
+          <SpecLine label="Style" value={door.style} />
+          <SpecLine label="Overlay" value={door.overlay} />
+          <SpecLine label="Drawer Front" value={door.drawerFront} />
+          <SpecLine label="Profile" value={door.doorProfile} />
+        </div>
+
         {/* Species Tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">
-          {door.availableSpecies.map((species) => (
+          {door.woodSpecies.map((species) => (
             <span
               key={species}
               className="inline-block px-2 py-0.5 text-xs font-sans font-medium rounded-full bg-[#F7F6F4] text-[#242019]/80 border border-[#E0E1E1]"
@@ -214,6 +266,17 @@ function DoorCard({ door }: { door: DoorStyle }) {
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+function SpecLine({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col">
+      <span className="font-sans text-[10px] uppercase tracking-wider text-[#949089]">
+        {label}
+      </span>
+      <span className="font-sans text-xs text-[#242019]/80">{value}</span>
     </div>
   );
 }

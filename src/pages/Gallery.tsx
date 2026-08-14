@@ -82,8 +82,8 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: 'Two-Tone MDF Kitchen',
-    description: 'Iverson and Erving paint-grade MDF door styles combined',
+    title: 'Two-Tone Kitchen',
+    description: 'Iverson and Erving door styles in a two-tone palette',
     doorStyles: ['Iverson', 'Erving'],
     coverOrientation: 'landscape',
     images: [

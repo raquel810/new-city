@@ -273,8 +273,8 @@ export default function WoodSpecies() {
             <span className="text-[#242019] font-medium">Bryant</span> is available in
             Maple, Cherry, Alder, and Paint-Grade Maple (4 species).{' '}
             <span className="text-[#242019] font-medium">Iverson</span> and{' '}
-            <span className="text-[#242019] font-medium">Erving</span> are MDF only and do
-            not use natural wood species.
+            <span className="text-[#242019] font-medium">Erving</span> are available in
+            select species only. See the Door Styles page for full availability.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             {['Maple', 'Hickory', 'Cherry', 'Walnut', 'Alder', 'QS White Oak', 'Rift White Oak'].map(
