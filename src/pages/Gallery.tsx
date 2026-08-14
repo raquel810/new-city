@@ -122,26 +122,24 @@ const projects: Project[] = [
   },
   {
     id: 10,
-    title: 'Kitchen & Pantry',
-    description: 'Jordan raised panel cabinetry through kitchen and pantry',
+    title: 'Kitchen',
+    description: 'Jordan raised panel cabinetry',
     doorStyles: ['Jordan'],
     coverOrientation: 'landscape',
     images: [
       '/featured-images/kitchen3-jordan_photo_0.jpg',
       '/featured-images/kitchen3-jordan_photo_1.jpg',
-      '/featured-images/kitchen4-jordan_photo_0.jpg',
     ],
   },
   {
     id: 11,
-    title: 'Laundry Rooms',
-    description: 'Duncan and Jordan door styles for functional laundry spaces',
-    doorStyles: ['Duncan', 'Jordan'],
+    title: 'Laundry Room',
+    description: 'Duncan door style for a functional laundry space',
+    doorStyles: ['Duncan'],
     coverOrientation: 'portrait',
     images: [
       '/featured-images/laundry-duncan_photo_0.jpg',
       '/featured-images/laundry-duncan_photo_1.jpg',
-      '/featured-images/laundry2-jordan_photo_0.jpg',
     ],
   },
   {

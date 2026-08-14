@@ -8,6 +8,7 @@ import Gallery from '@/pages/Gallery';
 import Studio from '@/pages/Studio';
 import Contact from '@/pages/Contact';
 import ProjectNguyen from '@/pages/ProjectNguyen';
+import SpecialtyGlass from '@/pages/SpecialtyGlass';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/door-styles" element={<DoorStyles />} />
         <Route path="/finishes" element={<Finishes />} />
         <Route path="/wood-species" element={<WoodSpecies />} />
+        <Route path="/specialty-glass" element={<SpecialtyGlass />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
         <Route path="/studio" element={<Studio />} />

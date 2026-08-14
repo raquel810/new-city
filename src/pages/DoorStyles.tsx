@@ -112,7 +112,6 @@ const DOOR_STYLES: DoorStyle[] = [
     hasImage: true,
     installedPhotos: [
       { src: '/featured-images/kitchen3-jordan_photo_0.jpg', alt: 'Jordan kitchen cabinetry' },
-      { src: '/featured-images/laundry2-jordan_photo_0.jpg', alt: 'Jordan laundry room' },
     ],
   },
   {
@@ -124,7 +123,8 @@ const DOOR_STYLES: DoorStyle[] = [
     drawerFront: '5-Piece or Slab',
     doorProfile: '2 3/4" frame, 3/4" thick',
     woodSpecies: ['Maple', 'Cherry', 'Oak'],
-    hasImage: false,
+    doorImage: '/jackson.png',
+    hasImage: true,
     installedPhotos: [],
   },
   {

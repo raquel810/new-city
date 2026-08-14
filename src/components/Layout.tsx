@@ -6,6 +6,7 @@ const navLinks = [
   { label: 'Door Styles', to: '/door-styles' },
   { label: 'Finishes', to: '/finishes' },
   { label: 'Wood Species', to: '/wood-species' },
+  { label: 'Specialty Glass', to: '/specialty-glass' },
   { label: 'The Studio', to: '/studio' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Contact', to: '/contact' },
