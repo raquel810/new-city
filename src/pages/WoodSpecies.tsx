@@ -83,19 +83,25 @@ export default function WoodSpecies() {
   return (
     <main className="bg-[#F7F6F4]">
       {/* Hero */}
-      <section className="bg-[#F7F6F4] pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative pt-32 pb-20 px-6">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/featured-images/twotonekitchen4-iversonerving_photo_2.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-white/60" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <TreePine className="w-6 h-6 text-[#949089]" />
-            <span className="text-[#949089] font-sans text-sm uppercase tracking-[0.2em]">
+            <TreePine className="w-6 h-6 text-[#242019]/50" />
+            <span className="text-[#242019]/50 font-sans text-sm uppercase tracking-[0.2em]">
               Materials
             </span>
-            <TreePine className="w-6 h-6 text-[#949089]" />
+            <TreePine className="w-6 h-6 text-[#242019]/50" />
           </div>
           <h1 className="font-serif text-5xl md:text-6xl text-[#242019] mb-6 leading-tight">
             Wood Species
           </h1>
-          <p className="text-lg md:text-xl text-[#949089] font-sans max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[#242019]/70 font-sans max-w-2xl mx-auto leading-relaxed">
             Six species selected for hardness, grain behavior, and how they accept finish.
           </p>
         </div>

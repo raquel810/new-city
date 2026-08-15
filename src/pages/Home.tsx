@@ -257,7 +257,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/featured-images/twotonekitchen-duncan_photo_4.jpg)',
+            backgroundImage: 'url(/featured-images/laundry-duncan_photo_0.jpg)',
           }}
         >
           <div className="absolute inset-0 bg-white/60" />

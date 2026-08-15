@@ -45,7 +45,7 @@ const paintColors: Record<string, string> = {
   Drift: '#C6DDF0',
   Harbor: '#758B9A',
   Navy: '#35454E',
-  Orbital: '#2F2F30',
+  Nyx: '#2F2F30',
 };
 
 const stainColors: Record<string, { hex: string; image: string }> = {
