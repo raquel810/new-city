@@ -331,7 +331,7 @@ export default function Finishes() {
         >
           <div className="absolute inset-0 bg-white/60" />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-4xl mx-auto text-center text-glow">
           <h1 className="font-serif text-5xl md:text-6xl text-[#242019] mb-6">
             Finishes
           </h1>

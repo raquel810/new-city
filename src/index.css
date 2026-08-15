@@ -18,6 +18,12 @@
   }
 }
 
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 12px rgba(255,255,255,0.8), 0 0 4px rgba(255,255,255,0.6);
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center px-8 py-3 bg-brand-black text-white font-sans text-sm uppercase tracking-widest transition-all duration-300 hover:bg-brand-taupe;

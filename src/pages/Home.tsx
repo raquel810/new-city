@@ -54,7 +54,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-white/50" />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto text-glow">
           <h1 className="font-serif text-5xl md:text-7xl text-[#242019] mb-6 leading-tight">
             Cabinetry Built to Last
           </h1>
@@ -263,7 +263,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-white/60" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-6 text-glow">
           <p className="font-sans text-[#242019] uppercase tracking-widest text-sm mb-4">
             Door Configurator
           </p>

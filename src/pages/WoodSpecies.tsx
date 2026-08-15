@@ -90,7 +90,7 @@ export default function WoodSpecies() {
         >
           <div className="absolute inset-0 bg-white/60" />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-4xl mx-auto text-center text-glow">
           <div className="flex items-center justify-center gap-3 mb-6">
             <TreePine className="w-6 h-6 text-[#242019]/50" />
             <span className="text-[#242019]/50 font-sans text-sm uppercase tracking-[0.2em]">
