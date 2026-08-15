@@ -1,5 +1,6 @@
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 
 interface InstalledPhoto {
   src: string;
@@ -196,93 +197,6 @@ const DOOR_STYLES: DoorStyle[] = [
   },
 ];
 
-function DoorCard({ door }: { door: DoorStyle }) {
-  const nameLower = door.name.toLowerCase();
-  const imageSrc = door.doorImage ?? `/${nameLower}_hc-door.jpg`;
-
-  return (
-    <div className="group bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden border border-[#E0E1E1]">
-      {/* Door Image */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#F7F6F4]">
-        {door.hasImage ? (
-          <img
-            src={imageSrc}
-            alt={`${door.name} door style`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="font-sans text-sm text-[#949089]">Coming Soon</span>
-          </div>
-        )}
-
-        {/* Profile overlay on hover */}
-        <div className="absolute inset-0 bg-white/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-          <img
-            src={`/${nameLower}_profile.png`}
-            alt={`${door.name} edge profile`}
-            className="max-w-full max-h-full object-contain drop-shadow-lg"
-          />
-        </div>
-      </div>
-
-      {/* Card Content */}
-      <div className="p-5">
-        <h2 className="font-serif text-2xl font-bold text-[#242019] mb-2 group-hover:text-[#949089] transition-colors duration-300">
-          {door.name}
-        </h2>
-        <p className="font-sans text-sm text-[#242019]/70 leading-relaxed mb-4">
-          {door.description}
-        </p>
-
-        {/* Specifications */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mb-4">
-          <SpecLine label="Style" value={door.style} />
-          <SpecLine label="Overlay" value={door.overlay} />
-          <SpecLine label="Drawer Front" value={door.drawerFront} />
-          <SpecLine label="Profile" value={door.doorProfile} />
-        </div>
-
-        {/* Species Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {door.woodSpecies.map((species) => (
-            <span
-              key={species}
-              className="inline-block px-2 py-0.5 text-xs font-sans font-medium rounded-full bg-[#F7F6F4] text-[#242019]/80 border border-[#E0E1E1]"
-            >
-              {species}
-            </span>
-          ))}
-        </div>
-
-        {/* Installed Photos */}
-        {door.installedPhotos.length > 0 && (
-          <div>
-            <p className="font-sans text-xs uppercase tracking-wider text-[#949089] mb-2">
-              See it installed
-            </p>
-            <div className="flex gap-2">
-              {door.installedPhotos.map((photo, i) => (
-                <Link
-                  key={i}
-                  to="/gallery"
-                  className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-[#949089] transition-all duration-200"
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function SpecLine({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
@@ -295,6 +209,21 @@ function SpecLine({ label, value }: { label: string; value: string }) {
 }
 
 export default function DoorStyles() {
+  const [activeDoor, setActiveDoor] = useState<string | null>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  const selected = DOOR_STYLES.find((d) => d.name === activeDoor);
+
+  useEffect(() => {
+    if (selected && detailRef.current) {
+      const top = detailRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, [selected]);
+
+  const getImageSrc = (door: DoorStyle) =>
+    door.doorImage ?? `/${door.name.toLowerCase()}_hc-door.jpg`;
+
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Banner */}
@@ -305,19 +234,148 @@ export default function DoorStyles() {
           </h1>
           <p className="font-sans text-lg md:text-xl text-[#949089] max-w-2xl mx-auto">
             Thirteen profiles defined by edge geometry, panel depth, and proportion.
+            Select any door to explore its details.
           </p>
         </div>
       </section>
 
-      {/* Door Styles Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="font-sans text-sm text-[#949089] text-center mb-10">
-          Hover any door to reveal its cross-section profile.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {DOOR_STYLES.map((door) => (
-            <DoorCard key={door.name} door={door} />
-          ))}
+      {/* Detail Panel */}
+      {selected && (
+        <section ref={detailRef} className="px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="max-w-6xl mx-auto animate-fadeIn">
+            <div className="bg-white rounded-2xl border border-[#E0E1E1] shadow-lg overflow-hidden">
+              <div className="flex flex-col lg:flex-row">
+                {/* Door Image */}
+                <div className="lg:w-[380px] shrink-0 bg-[#F7F6F4] flex items-center justify-center p-8 lg:p-10">
+                  <img
+                    src={getImageSrc(selected)}
+                    alt={`${selected.name} door style`}
+                    className="max-h-[400px] lg:max-h-[500px] w-auto object-contain"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 p-8 lg:p-10 relative">
+                  <button
+                    onClick={() => setActiveDoor(null)}
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#F7F6F4] flex items-center justify-center text-[#949089] hover:text-[#242019] hover:bg-[#E0E1E1] transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <h2 className="font-serif text-3xl md:text-4xl text-[#242019] mb-2">
+                    {selected.name}
+                  </h2>
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-[#949089] mb-6">
+                    {selected.style}
+                  </p>
+
+                  <p className="font-sans text-[#242019]/80 text-base leading-relaxed mb-8">
+                    {selected.description}
+                  </p>
+
+                  {/* Profile Cross-Section */}
+                  <div className="mb-8 p-4 bg-[#F7F6F4] rounded-xl">
+                    <p className="font-sans text-[10px] uppercase tracking-wider text-[#949089] mb-3">
+                      Edge Profile
+                    </p>
+                    <img
+                      src={`/${selected.name.toLowerCase()}_profile.png`}
+                      alt={`${selected.name} edge profile`}
+                      className="max-h-24 w-auto object-contain"
+                    />
+                  </div>
+
+                  {/* Specifications */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 mb-6">
+                    <SpecLine label="Style" value={selected.style} />
+                    <SpecLine label="Overlay" value={selected.overlay} />
+                    <SpecLine label="Drawer Front" value={selected.drawerFront} />
+                    <SpecLine label="Profile" value={selected.doorProfile} />
+                  </div>
+
+                  {/* Species Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {selected.woodSpecies.map((species) => (
+                      <span
+                        key={species}
+                        className="inline-block px-2.5 py-1 text-xs font-sans font-medium rounded-full bg-[#F7F6F4] text-[#242019]/80 border border-[#E0E1E1]"
+                      >
+                        {species}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Installed Photos */}
+                  {selected.installedPhotos.length > 0 && (
+                    <div>
+                      <p className="font-sans text-xs uppercase tracking-wider text-[#949089] mb-3">
+                        See it installed
+                      </p>
+                      <div className="flex gap-3">
+                        {selected.installedPhotos.map((photo, i) => (
+                          <Link
+                            key={i}
+                            to="/gallery"
+                            className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-[#949089] transition-all duration-200"
+                          >
+                            <img
+                              src={photo.src}
+                              alt={photo.alt}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Door Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {DOOR_STYLES.map((door) => {
+            const isActive = activeDoor === door.name;
+            const imageSrc = getImageSrc(door);
+            return (
+              <button
+                key={door.name}
+                onClick={() =>
+                  setActiveDoor((prev) => (prev === door.name ? null : door.name))
+                }
+                className={`group flex flex-col items-center text-center p-4 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#949089] focus:ring-offset-2 ${
+                  isActive
+                    ? 'border-[#242019] bg-white shadow-lg'
+                    : 'border-[#E0E1E1] bg-white hover:border-[#949089] hover:shadow-md hover:-translate-y-1'
+                }`}
+              >
+                <div className="w-full aspect-[3/4] flex items-center justify-center mb-4 overflow-hidden rounded-lg bg-[#F7F6F4]">
+                  {door.hasImage ? (
+                    <img
+                      src={imageSrc}
+                      alt={`${door.name} door style`}
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="font-sans text-sm text-[#949089]">
+                      Coming Soon
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-serif text-lg text-[#242019] mb-1">
+                  {door.name}
+                </h3>
+                <p className="font-sans text-xs text-[#949089]">{door.style}</p>
+              </button>
+            );
+          })}
         </div>
       </section>
 
@@ -328,7 +386,8 @@ export default function DoorStyles() {
             See the details up close
           </h2>
           <p className="font-sans text-[#949089] text-lg mb-8">
-            Use the configurator to pair any profile with your choice of species and finish.
+            Use the configurator to pair any profile with your choice of species
+            and finish.
           </p>
           <Link
             to="/studio"

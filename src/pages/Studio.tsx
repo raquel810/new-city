@@ -401,6 +401,7 @@ function SelectableImageCard({
         <img
           src={image}
           alt={label}
+          loading="lazy"
           className="max-w-full max-h-full object-contain"
         />
       </div>
@@ -506,7 +507,7 @@ function StainSwatch({
           !disabled ? 'group-hover:scale-110' : ''
         } ${selected ? 'border-[#242019]' : 'border-[#E0E1E1]'}`}
       >
-        <img src={image} alt={name} className="w-full h-full object-cover" />
+        <img src={image} alt={name} className="w-full h-full object-cover" loading="lazy" />
         {selected && (
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
             <Check className="w-4 h-4 text-white drop-shadow" />

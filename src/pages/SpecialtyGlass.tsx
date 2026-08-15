@@ -111,6 +111,7 @@ export default function SpecialtyGlass() {
                   src={glass.image}
                   alt={`${glass.name} glass`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <div className="p-5">

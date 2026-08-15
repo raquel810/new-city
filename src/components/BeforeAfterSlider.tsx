@@ -58,6 +58,7 @@ export default function BeforeAfterSlider({
       <img
         src={afterImage}
         alt={afterLabel}
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         draggable={false}
       />
@@ -70,6 +71,7 @@ export default function BeforeAfterSlider({
         <img
           src={beforeImage}
           alt={beforeLabel}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           draggable={false}
         />

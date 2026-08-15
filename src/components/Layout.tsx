@@ -128,7 +128,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand Column */}
           <div className="space-y-4">
-            <img src="/HC-white.png" alt="Harris Cabinetry" className="h-10 w-auto" />
+            <img src="/HC-white.png" alt="Harris Cabinetry" className="h-10 w-auto" loading="lazy" />
             <p className="font-sans text-sm text-brand-taupe leading-relaxed mt-4">
               1/16" tolerances. Permanent construction. Plainfield, IL.
             </p>

@@ -126,6 +126,7 @@ export default function WoodSpecies() {
                       src={species.image}
                       alt={`${species.name} wood grain`}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>

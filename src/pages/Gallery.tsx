@@ -237,6 +237,7 @@ export default function Gallery() {
                   src={project.images[0]}
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-[#242019]/0 transition-all duration-300 group-hover:bg-[#242019]/30 flex items-center justify-center">
                   <span className="rounded-full bg-[#F7F6F4]/90 px-4 py-2 font-sans text-sm font-medium text-[#242019] opacity-0 transition-all duration-300 scale-90 group-hover:opacity-100 group-hover:scale-100">

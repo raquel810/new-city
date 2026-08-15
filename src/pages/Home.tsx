@@ -88,6 +88,7 @@ export default function Home() {
               src="/featured-images/twotonekitchen-duncan_photo_1.jpg"
               alt="Harris Cabinetry custom two-tone kitchen"
               className="w-full h-[400px] lg:h-[550px] object-cover transition-transform duration-700 hover:scale-105"
+              loading="lazy"
             />
           </div>
 
@@ -226,6 +227,7 @@ export default function Home() {
                     src={item.src}
                     alt={item.alt}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#242019]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">

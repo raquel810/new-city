@@ -230,6 +230,7 @@ function StainSwatch({
           src={`/${nameLower}_hc-stain.jpg`}
           alt={`${color.name} stain finish`}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
       </div>
       <span
@@ -427,6 +428,7 @@ export default function Finishes() {
               src="/colordrop-logo.png"
               alt="ColorDrop"
               className="h-12 md:h-14 w-auto mb-6"
+              loading="lazy"
             />
             <p className="font-serif text-lg md:text-xl text-[#949089] italic mb-6">
               Beyond the standard palette.
@@ -455,6 +457,7 @@ export default function Finishes() {
                   src="/colordropkitchen-duncan_photo_0.jpg"
                   alt="ColorDrop custom kitchen with Deep Sea Dive hood"
                   className="w-full h-64 md:h-full object-cover transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <div className="overflow-hidden">
@@ -462,6 +465,7 @@ export default function Finishes() {
                   src="/colordropkitchen-duncan_photo_1.jpg"
                   alt="ColorDrop custom kitchen island in Deep Sea Dive"
                   className="w-full h-64 md:h-full object-cover transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
             </div>

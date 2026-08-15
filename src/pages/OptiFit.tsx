@@ -109,6 +109,7 @@ export default function OptiFit() {
                     src="/optifit-plus-logo-white.png"
                     alt="OptiFit+"
                     className="h-8 md:h-10 w-auto"
+                    loading="lazy"
                   />
                 </div>
 
