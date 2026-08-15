@@ -10,6 +10,7 @@ import Studio from '@/pages/Studio';
 import Contact from '@/pages/Contact';
 import ProjectNguyen from '@/pages/ProjectNguyen';
 import SpecialtyGlass from '@/pages/SpecialtyGlass';
+import OptiFit from '@/pages/OptiFit';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/finishes" element={<Finishes />} />
         <Route path="/wood-species" element={<WoodSpecies />} />
         <Route path="/specialty-glass" element={<SpecialtyGlass />} />
+        <Route path="/optifit" element={<OptiFit />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
         <Route path="/studio" element={<Studio />} />

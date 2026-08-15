@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Droplets, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface PaintColor {
   name: string;
@@ -420,37 +420,63 @@ export default function Finishes() {
 
       {/* ColorDrop Section */}
       <section className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-3xl p-10 md:p-16 bg-gradient-to-br from-[#F7F6F4] to-[#EDE8DF] border border-[#949089]/20 shadow-lg">
-            <div className="absolute top-0 left-8 right-8 h-1 rounded-full bg-gradient-to-r from-[#949089] via-[#B8B0A2] to-[#949089]" />
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col items-center text-center mb-16">
+            <img
+              src="/colordrop-logo.png"
+              alt="ColorDrop"
+              className="h-12 md:h-14 w-auto mb-6"
+            />
+            <p className="font-serif text-lg md:text-xl text-[#949089] italic mb-6">
+              Beyond the standard palette.
+            </p>
+            <div className="w-16 h-px bg-[#949089]/40 mb-8" />
+            <p className="font-sans text-[#242019]/80 text-base md:text-lg leading-relaxed max-w-2xl mb-4">
+              Can't find the perfect shade in our standard palette? With{' '}
+              <span className="font-semibold text-[#242019]">ColorDrop</span>,
+              you're not limited to what's on the chart. Bring us any color
+              from any manufacturer, and our finishing team will develop a
+              factory-matched finish exclusively for your cabinetry.
+            </p>
+            <p className="font-sans text-[#949089] text-sm md:text-base leading-relaxed max-w-2xl">
+              Every ColorDrop finish is hand-mixed, tested on your chosen wood
+              species, and refined until it's a perfect match. Because your
+              home should reflect exactly what you envision -- down to the last
+              detail.
+            </p>
+          </div>
 
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-[#242019] flex items-center justify-center mb-6">
-                <Droplets className="w-8 h-8 text-[#F7F6F4]" />
+          {/* Featured Example */}
+          <div className="rounded-2xl border border-[#E0E1E1] bg-[#F7F6F4] overflow-hidden shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="overflow-hidden">
+                <img
+                  src="/colordropkitchen-duncan_photo_0.jpg"
+                  alt="ColorDrop custom kitchen with Deep Sea Dive hood"
+                  className="w-full h-64 md:h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
-
-              <h2 className="font-serif text-4xl md:text-5xl text-[#242019] mb-3">
-                ColorDrop
-              </h2>
-              <p className="font-serif text-lg md:text-xl text-[#949089] italic mb-8">
-                Beyond the standard palette.
+              <div className="overflow-hidden">
+                <img
+                  src="/colordropkitchen-duncan_photo_1.jpg"
+                  alt="ColorDrop custom kitchen island in Deep Sea Dive"
+                  className="w-full h-64 md:h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+            <div className="p-8 md:p-10 text-center">
+              <p className="font-sans text-xs uppercase tracking-[0.2em] text-[#949089] mb-3">
+                Featured ColorDrop Project
               </p>
-
-              <div className="w-16 h-px bg-[#949089]/40 mb-8" />
-
-              <p className="font-sans text-[#242019]/80 text-base md:text-lg leading-relaxed max-w-2xl mb-6">
-                Can't find the perfect shade in our standard palette? With{' '}
-                <span className="font-semibold text-[#242019]">ColorDrop</span>,
-                you're not limited to what's on the chart. Bring us any color
-                sample -- a swatch of fabric, a paint chip, a photograph, even a
-                treasured memento -- and our finishing artisans will develop a
-                custom-matched finish exclusively for your cabinetry.
-              </p>
-              <p className="font-sans text-[#949089] text-sm md:text-base leading-relaxed max-w-2xl">
-                Every ColorDrop finish is hand-mixed, tested on your chosen wood
-                species, and refined until it's a perfect match. Because your
-                home should reflect exactly what you envision -- down to the last
-                detail.
+              <h3 className="font-serif text-2xl md:text-3xl text-[#242019] mb-3">
+                Deep Sea Dive SW 7618
+              </h3>
+              <p className="font-sans text-[#242019]/70 text-base leading-relaxed max-w-xl mx-auto">
+                Custom-matched to Sherwin-Williams Deep Sea Dive and factory-applied
+                to hickory. The hood and island carry the same color with grain
+                visible beneath the finish -- a look only a stain-matched paint can
+                achieve.
               </p>
             </div>
           </div>

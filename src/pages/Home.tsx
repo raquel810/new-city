@@ -66,6 +66,7 @@ export default function Home() {
           <Link
             to="/contact"
             className="btn-primary inline-block text-lg px-8 py-4 transition-transform duration-300 hover:scale-105"
+            style={{ textShadow: 'none' }}
           >
             Begin a Conversation
           </Link>
@@ -161,9 +162,12 @@ export default function Home() {
               <h3 className="font-serif text-2xl text-[#242019] mb-3">
                 22 Standard Finishes
               </h3>
-              <p className="font-sans text-[#949089] leading-relaxed mb-4">
+              <p className="font-sans text-[#949089] leading-relaxed mb-3">
                 Eleven stains developed to reveal grain character. Eleven paints
                 formulated for density and durability. All hand-applied.
+              </p>
+              <p className="font-sans text-xs text-[#949089]/80 italic mb-4">
+                Plus custom color matching through ColorDrop
               </p>
               <span className="inline-flex items-center gap-1 text-[#242019] font-sans font-medium group-hover:gap-2 transition-all duration-300">
                 View Finishes <ArrowRight className="w-4 h-4" />
@@ -276,6 +280,7 @@ export default function Home() {
           <Link
             to="/studio"
             className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4 transition-transform duration-300 hover:scale-105"
+            style={{ textShadow: 'none' }}
           >
             Enter The Studio
             <ArrowRight className="w-5 h-5" />

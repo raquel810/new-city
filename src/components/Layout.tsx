@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Finishes', to: '/finishes' },
   { label: 'Wood Species', to: '/wood-species' },
   { label: 'Specialty Glass', to: '/specialty-glass' },
+  { label: 'OptiFit', to: '/optifit' },
   { label: 'The Studio', to: '/studio' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'Contact', to: '/contact' },
