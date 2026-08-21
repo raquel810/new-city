@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { DoorOpen, Palette, TreePine, ArrowRight } from 'lucide-react';
+import ProjectQuiz from '@/components/ProjectQuiz';
 
 const FEATURED_WORK = [
   {
@@ -257,6 +258,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Project Quiz Section */}
+      <ProjectQuiz />
 
       {/* Studio Teaser Section */}
       <section className="relative py-24 md:py-32">
