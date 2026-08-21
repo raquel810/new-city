@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DoorOpen, Palette, TreePine, ArrowRight } from 'lucide-react';
-import ProjectQuiz from '@/components/ProjectQuiz';
+import { DoorOpen, Palette, TreePine, ArrowRight, ClipboardList } from 'lucide-react';
 
 const FEATURED_WORK = [
   {
@@ -197,6 +196,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Quiz Teaser */}
+      <section className="py-16 md:py-20 bg-[#F7F6F4]">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
+            <ClipboardList className="w-8 h-8 md:w-10 md:h-10 text-[#949089]" />
+          </div>
+          <div className="text-center md:text-left flex-1">
+            <h2 className="font-serif text-2xl md:text-3xl text-[#242019] mb-2">
+              Not sure where to start?
+            </h2>
+            <p className="font-sans text-[#949089] text-base md:text-lg max-w-xl">
+              Take our 60-second project quiz. We will use your answers to shape a
+              personalized starting point for your cabinetry project.
+            </p>
+          </div>
+          <Link
+            to="/consultation"
+            className="btn-primary inline-flex items-center gap-2 px-6 py-3 whitespace-nowrap transition-transform duration-300 hover:scale-105 flex-shrink-0"
+            style={{ textShadow: 'none' }}
+          >
+            Take the Quiz
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Featured Work Section */}
       <section className="section-padding bg-[#F7F6F4]">
         <div className="max-w-7xl mx-auto">
@@ -258,9 +283,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Project Quiz Section */}
-      <ProjectQuiz />
 
       {/* Studio Teaser Section */}
       <section className="relative py-24 md:py-32">

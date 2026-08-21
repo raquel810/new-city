@@ -11,6 +11,7 @@ import Contact from '@/pages/Contact';
 import ProjectNguyen from '@/pages/ProjectNguyen';
 import SpecialtyGlass from '@/pages/SpecialtyGlass';
 import OptiFit from '@/pages/OptiFit';
+import Consultation from '@/pages/Consultation';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/optifit" element={<OptiFit />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
+        <Route path="/consultation" element={<Consultation />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/contact" element={<Contact />} />
       </Route>

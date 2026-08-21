@@ -105,9 +105,9 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
   );
 }
 
-export default function ProjectQuiz() {
+export default function ProjectQuiz({ startOpen = false }: { startOpen?: boolean }) {
   const [step, setStep] = useState(0);
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(startOpen);
   const [answers, setAnswers] = useState<QuizAnswers>({
     room: '',
     size: '',
