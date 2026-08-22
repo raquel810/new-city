@@ -21,17 +21,16 @@ const BEFORE_IMAGES = new Set([6, 19, 30, 34, 42]);
 const PROJECT_DETAILS = {
   primary: [
     { label: 'Door Style', value: 'Duncan', link: '/door-styles' },
-    { label: 'Finish (Perimeter)', value: 'Arctic', link: '/finishes' },
-    { label: 'Finish (Island + Shelves)', value: 'White Oak — Custom Stain Match', link: '/finishes' },
-    { label: 'Specialty Glass', value: 'Glacier', link: null },
+    { label: 'Finish (Perimeter)', value: "'Arctic' Paint", link: '/finishes' },
+    { label: 'Wood Species & Finish (Island & Shelves)', value: 'White Oak with Custom Stain Match', link: '/finishes' },
+    { label: 'Specialty Glass', value: "'Glacier' Glass Upper Cabinets", link: '/specialty-glass' },
   ],
   secondary: [
-    { label: 'Countertops', value: 'Taj Mahal Quartz by MSI' },
-    { label: 'Backsplash', value: 'Full Height, Taj Mahal by MSI' },
-    { label: 'Hardware', value: 'Top Knobs Ascendra Pull — Honey Bronze (TK704)' },
+    { label: 'Countertops & Backsplash', value: "MSI 'Taj Mahal' Quartz (Full-Height Backsplash)" },
+    { label: 'Hardware', value: "Top Knobs 'Ascendra' Pulls (TK704) in Honey Bronze" },
     { label: 'Appliances', value: 'Premium Wolf Suite' },
     { label: 'Sink', value: 'Kraus PRO 32" (KHU100-32)' },
-    { label: 'Floors', value: 'Refinished Hardwood' },
+    { label: 'Key Features', value: 'Integrated lift-up appliance garage, specialty glass upper cabinets, custom stain-matched floating shelves' },
   ],
 };
 
@@ -71,16 +70,30 @@ export default function ProjectNguyen() {
             All Projects
           </Link>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-3">
-            The Nguyen Residence
+            The Glacier Oak Estate
           </h1>
-          <p className="font-sans text-lg md:text-xl text-white/80 max-w-2xl">
-            A full kitchen transformation featuring custom Harris Cabinetry in the Duncan door style
+          <p className="font-sans text-lg md:text-xl text-white/80 max-w-3xl">
+            This expansive, light-filled kitchen pairs crisp 'Arctic' painted perimeters with the
+            organic warmth of a custom-stained White Oak island and floating shelves.
+          </p>
+        </div>
+      </section>
+
+      {/* Project Description */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-3xl">
+          <p className="font-sans text-[#242019]/80 text-lg leading-relaxed">
+            Showcasing the Duncan door style, the distinct 45-degree chamfered interior edges
+            catch the light, framing each panel with a sharp, transitional elegance. Elevated
+            by a seamless full-height Taj Mahal quartz backsplash and warm honey bronze
+            hardware, the design beautifully balances open specialty glass displays with
+            clever, concealed countertop appliance storage.
           </p>
         </div>
       </section>
 
       {/* Project Details */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16 md:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Primary Details - Harris Products */}
           <div className="lg:col-span-2">
@@ -112,7 +125,7 @@ export default function ProjectNguyen() {
           {/* Secondary Details */}
           <div>
             <h2 className="font-serif text-2xl text-[#242019] mb-8">
-              Selections
+              Project Specifications
             </h2>
             <div className="space-y-4">
               {PROJECT_DETAILS.secondary.map((detail) => (
@@ -167,7 +180,7 @@ export default function ProjectNguyen() {
             >
               <img
                 src={src}
-                alt={`Nguyen Residence photo ${index + 1}`}
+                alt={`The Glacier Oak Estate photo ${index + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
@@ -226,7 +239,7 @@ export default function ProjectNguyen() {
           </button>
           <img
             src={galleryImages[lightboxIndex]}
-            alt={`Nguyen Residence photo ${lightboxIndex + 1}`}
+            alt={`The Glacier Oak Estate photo ${lightboxIndex + 1}`}
             className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"
           />
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 font-sans text-sm">

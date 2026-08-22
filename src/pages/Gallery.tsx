@@ -1,211 +1,27 @@
-import { useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, X, Camera } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, ArrowRight } from 'lucide-react';
 
 interface Project {
-  id: number;
+  id: string;
   title: string;
-  description: string;
+  subtitle: string;
   doorStyles: string[];
-  images: string[];
-  coverOrientation: 'landscape' | 'portrait';
-  href?: string;
+  coverImage: string;
+  href: string;
 }
 
 const projects: Project[] = [
   {
-    id: 1,
-    title: 'The Schneider Residence',
-    description: 'Full walnut cabinetry with integrated hardware',
-    doorStyles: [],
-    coverOrientation: 'landscape',
-    images: Array.from({ length: 9 }, (_, i) => `/projects/schneider/schneide-project_0${i}.jpg`),
-  },
-  {
-    id: 2,
-    title: 'The Nguyen Residence',
-    description: 'Duncan door style in Arctic with White Oak island',
+    id: 'nguyen',
+    title: 'The Glacier Oak Estate',
+    subtitle: "Arctic painted perimeters with custom-stained White Oak island and floating shelves",
     doorStyles: ['Duncan'],
-    coverOrientation: 'landscape',
+    coverImage: '/projects/nguyen/nguyen_post-00.jpg',
     href: '/gallery/nguyen',
-    images: [
-      '/projects/nguyen/nguyen_post-00.jpg',
-      ...Array.from({ length: 47 }, (_, i) => `/projects/nguyen/nguyen_post-${i + 1}.jpg`),
-    ],
-  },
-  {
-    id: 3,
-    title: 'The Carsten Residence',
-    description: 'Bryant door style in a two-tone transitional kitchen',
-    doorStyles: ['Bryant'],
-    coverOrientation: 'landscape',
-    images: Array.from({ length: 7 }, (_, i) => `/projects/carsten/carsten-project_0${i}.jpg`),
-  },
-  {
-    id: 4,
-    title: 'Two-Tone Kitchen',
-    description: 'Duncan door style in a striking two-tone palette',
-    doorStyles: ['Duncan'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/twotonekitchen-duncan_photo_4.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_5.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_0.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_1.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_2.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_3.jpg',
-      '/featured-images/twotonekitchen-duncan_photo_6.jpg',
-    ],
-  },
-  {
-    id: 6,
-    title: 'Modern Slab Kitchen',
-    description: 'Russell door style with clean, contemporary lines',
-    doorStyles: ['Russell'],
-    coverOrientation: 'portrait',
-    images: [
-      '/featured-images/twotonekitchen3-russell_photo_0.jpg',
-      '/featured-images/twotonekitchen3-russell_photo_1.jpg',
-    ],
-  },
-  {
-    id: 7,
-    title: 'Two-Tone Kitchen',
-    description: 'Iverson and Erving door styles in a two-tone palette',
-    doorStyles: ['Iverson', 'Erving'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg',
-      '/featured-images/twotonekitchen4-iversonerving_photo_2.jpg',
-      '/featured-images/twotonekitchen4-iversonerving_photo_0.jpg',
-      '/featured-images/twotonekitchen4-iversonerving_photo_1.jpg',
-      '/featured-images/twotonekitchen4-iversonerving_photo_4.jpg',
-      '/featured-images/twotonekitchen4-iversonerving_photo_5.jpg',
-    ],
-  },
-  {
-    id: 8,
-    title: 'Warm Duncan Kitchen',
-    description: 'Duncan door style in warm wood tones',
-    doorStyles: ['Duncan'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/twotonekitchen5-duncan_photo_2.jpg',
-      '/featured-images/twotonekitchen5-duncan_photo_3.jpg',
-      '/featured-images/twotonekitchen5-duncan_photo_0.jpg',
-      '/featured-images/twotonekitchen5-duncan_photo_1.jpg',
-    ],
-  },
-  {
-    id: 9,
-    title: 'Bathroom Vanity',
-    description: 'Custom Duncan door style vanity with clean details',
-    doorStyles: ['Duncan'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/bathroom-duncan_photo_2.jpg',
-      '/featured-images/bathroom-duncan_photo_0.jpg',
-      '/featured-images/bathroom-duncan_photo_1.jpg',
-    ],
-  },
-  {
-    id: 10,
-    title: 'Kitchen',
-    description: 'Jordan flat-panel cabinetry',
-    doorStyles: ['Jordan'],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/kitchen3-jordan_photo_0.jpg',
-      '/featured-images/kitchen3-jordan_photo_1.jpg',
-    ],
-  },
-  {
-    id: 11,
-    title: 'Laundry Room',
-    description: 'Duncan door style for a functional laundry space',
-    doorStyles: ['Duncan'],
-    coverOrientation: 'portrait',
-    images: [
-      '/featured-images/laundry-duncan_photo_0.jpg',
-      '/featured-images/laundry-duncan_photo_1.jpg',
-    ],
-  },
-  {
-    id: 12,
-    title: 'The Workshop',
-    description: 'The shop floor where every piece is built to tolerance',
-    doorStyles: [],
-    coverOrientation: 'landscape',
-    images: [
-      '/featured-images/shop_photo_0.jpg',
-    ],
   },
 ];
 
 export default function Gallery() {
-  const navigate = useNavigate();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = (project: Project) => {
-    if (project.href) {
-      navigate(project.href);
-      return;
-    }
-    setSelectedProject(project);
-    setCurrentImageIndex(0);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    setTimeout(() => {
-      setSelectedProject(null);
-      setCurrentImageIndex(0);
-    }, 300);
-  }, []);
-
-  const nextImage = useCallback(() => {
-    if (!selectedProject) return;
-    setCurrentImageIndex((prev) =>
-      prev === selectedProject.images.length - 1 ? 0 : prev + 1
-    );
-  }, [selectedProject]);
-
-  const prevImage = useCallback(() => {
-    if (!selectedProject) return;
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? selectedProject.images.length - 1 : prev - 1
-    );
-  }, [selectedProject]);
-
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isModalOpen) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, closeModal, nextImage, prevImage]);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isModalOpen]);
-
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
       {/* Hero Banner */}
@@ -227,14 +43,14 @@ export default function Gallery() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <button
+            <Link
               key={project.id}
-              onClick={() => openModal(project)}
-              className="group relative overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#949089] focus:ring-offset-2 text-left"
+              to={project.href}
+              className="group relative overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#949089] focus:ring-offset-2"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={project.images[0]}
+                  src={project.coverImage}
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
@@ -244,19 +60,13 @@ export default function Gallery() {
                     View Project
                   </span>
                 </div>
-                <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-[#242019]/70 px-3 py-1 backdrop-blur-sm">
-                  <Camera className="h-3.5 w-3.5 text-[#F7F6F4]" />
-                  <span className="font-sans text-xs text-[#F7F6F4]">
-                    {project.images.length}
-                  </span>
-                </div>
               </div>
               <div className="p-5">
                 <h3 className="font-serif text-xl font-semibold text-[#242019]">
                   {project.title}
                 </h3>
                 <p className="mt-1 font-sans text-sm text-[#949089]">
-                  {project.description}
+                  {project.subtitle}
                 </p>
                 {project.doorStyles.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-1.5">
@@ -271,106 +81,20 @@ export default function Gallery() {
                   </div>
                 )}
               </div>
-            </button>
+            </Link>
           ))}
         </div>
-      </section>
 
-      {/* Modal / Carousel */}
-      {selectedProject && (
-        <div
-          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${
-            isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <div
-            className={`absolute inset-0 bg-[#242019]/90 backdrop-blur-sm transition-opacity duration-300 ${
-              isModalOpen ? 'opacity-100' : 'opacity-0'
-            }`}
-            onClick={closeModal}
-          />
-
-          <div
-            className={`relative w-full max-w-5xl transform transition-all duration-300 ${
-              isModalOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-            }`}
-          >
-            <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 z-10 rounded-full bg-[#F7F6F4]/10 p-2 text-[#F7F6F4] transition-colors hover:bg-[#F7F6F4]/20 focus:outline-none focus:ring-2 focus:ring-[#F7F6F4]/50"
-              aria-label="Close gallery"
-            >
-              <X className="h-6 w-6" />
-            </button>
-
-            <div className="mb-4 text-center">
-              <h2 className="font-serif text-2xl font-bold text-[#F7F6F4] md:text-3xl">
-                {selectedProject.title}
-              </h2>
-              <p className="mt-1 font-sans text-sm text-[#E0E1E1]/70">
-                {selectedProject.description}
-              </p>
-            </div>
-
-            <div className="relative overflow-hidden rounded-lg bg-[#242019]">
-              <div className="relative aspect-[16/10] md:aspect-[16/9]">
-                {selectedProject.images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`${selectedProject.title} - Image ${index + 1}`}
-                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {selectedProject.images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-[#F7F6F4]/90 p-2 text-[#242019] shadow-lg transition-all hover:bg-[#F7F6F4] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#949089]"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </>
-              )}
-            </div>
-
-            {selectedProject.images.length > 1 && (
-              <>
-                <div className="mt-4 flex items-center justify-center gap-2">
-                  {selectedProject.images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToImage(index)}
-                      className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-                        index === currentImageIndex
-                          ? 'w-8 bg-[#F7F6F4]'
-                          : 'w-2.5 bg-[#F7F6F4]/40 hover:bg-[#F7F6F4]/60'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <p className="mt-3 text-center font-sans text-xs text-[#E0E1E1]/50">
-                  {currentImageIndex + 1} / {selectedProject.images.length}
-                </p>
-              </>
-            )}
+        {/* Coming Soon Placeholder */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E1E1] bg-white">
+            <span className="font-sans text-sm text-[#949089]">
+              More projects coming soon
+            </span>
+            <ArrowRight className="w-4 h-4 text-[#949089]" />
           </div>
         </div>
-      )}
+      </section>
     </div>
   );
 }
