@@ -59,6 +59,22 @@ const projects: Project[] = [
     coverImage: '/projects/pennington/pennington-post_photo_001-1.jpg',
     href: '/gallery/pennington',
   },
+  {
+    id: 'gaynor',
+    title: 'The Illuminated Fawn Estate',
+    subtitle: "Vanilla painted perimeter with a richly stained Fawn island and champagne bronze appliances",
+    doorStyles: ['Duncan', 'Jordan'],
+    coverImage: '/projects/gaynor/gaynor-post_photo_001-1.jpg',
+    href: '/gallery/gaynor',
+  },
+  {
+    id: 'sorens',
+    title: 'The Sesame & Rye Estate',
+    subtitle: "White Sesame perimeter with Rye stained island, dual-quartz waterfall, and custom wood hood",
+    doorStyles: ['Iverson', 'Erving'],
+    coverImage: '/projects/sorens/sorens-post_photo_001-1.jpg',
+    href: '/gallery/sorens',
+  },
 ];
 
 export default function Gallery() {
