@@ -19,6 +19,22 @@ const projects: Project[] = [
     coverImage: '/projects/nguyen/nguyen_post-00.jpg',
     href: '/gallery/nguyen',
   },
+  {
+    id: 'carsten',
+    title: 'The Alabaster Hearth',
+    subtitle: "Bright airy perimeter balanced by a rich stained wood island and custom range hood",
+    doorStyles: ['Jordan'],
+    coverImage: '/projects/carsten/carsten-post_photo_000-1.jpg',
+    href: '/gallery/carsten',
+  },
+  {
+    id: 'schneide-kitchen',
+    title: 'The Deep Sea Reserve',
+    subtitle: "Bold 'Deep Sea Dive' painted perimeter with natural hickory island and copper accents",
+    doorStyles: ['Duncan'],
+    coverImage: '/projects/schneide-kitchen/schneide-post_photo_001-1.jpg',
+    href: '/gallery/schneide-kitchen',
+  },
 ];
 
 export default function Gallery() {
