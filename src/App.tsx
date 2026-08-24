@@ -9,6 +9,8 @@ import Gallery from '@/pages/Gallery';
 import Studio from '@/pages/Studio';
 import Contact from '@/pages/Contact';
 import ProjectNguyen from '@/pages/ProjectNguyen';
+import ProjectCarsten from '@/pages/ProjectCarsten';
+import ProjectSchneideKitchen from '@/pages/ProjectSchneideKitchen';
 import SpecialtyGlass from '@/pages/SpecialtyGlass';
 import OptiFit from '@/pages/OptiFit';
 import Consultation from '@/pages/Consultation';
@@ -27,6 +29,8 @@ function App() {
         <Route path="/optifit" element={<OptiFit />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
+        <Route path="/gallery/carsten" element={<ProjectCarsten />} />
+        <Route path="/gallery/schneide-kitchen" element={<ProjectSchneideKitchen />} />
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/contact" element={<Contact />} />
