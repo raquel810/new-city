@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 const ALL_IMAGES = Array.from(
   { length: 20 },
@@ -145,12 +145,26 @@ export default function ProjectSchneideLaundry() {
       </section>
 
       <section className="border-t border-[#E0E1E1] py-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <span className="font-sans text-xs uppercase tracking-wider text-[#949089] block mb-1">
               Custom Cabinetry
             </span>
             <span className="font-serif text-lg text-[#242019]">Harris Cabinetry</span>
+          </div>
+          <div className="text-right">
+            <span className="font-sans text-xs uppercase tracking-wider text-[#949089] block mb-1">
+              Remodeling
+            </span>
+            <a
+              href="https://www.cabinettreestudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-sm text-[#6B5E54] hover:text-[#242019] transition-colors inline-flex items-center gap-1.5"
+            >
+              Cabinet Tree Studio
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </section>
