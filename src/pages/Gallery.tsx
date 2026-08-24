@@ -35,6 +35,30 @@ const projects: Project[] = [
     coverImage: '/projects/schneide-kitchen/schneide-post_photo_001-1.jpg',
     href: '/gallery/schneide-kitchen',
   },
+  {
+    id: 'schneide-bath',
+    title: 'The Refined Slate Sanctuary',
+    subtitle: 'Spa-like master bathroom with natural hickory cabinetry and copper accents',
+    doorStyles: ['Duncan'],
+    coverImage: '/projects/schneide-bath/schneide-bath-post_photo_001-1.jpg',
+    href: '/gallery/schneide-bath',
+  },
+  {
+    id: 'schneide-laundry',
+    title: 'The Lily Pad Utility Oasis',
+    subtitle: "Custom 'Lily Pad' green cabinetry with hickory accents in a multi-functional mudroom",
+    doorStyles: ['Duncan'],
+    coverImage: '/projects/schneide-laundry/schneide-laundry-post_photo_001-1.jpg',
+    href: '/gallery/schneide-laundry',
+  },
+  {
+    id: 'pennington',
+    title: 'The Cask Reserve',
+    subtitle: "Rich 'Cask' stained galley kitchen with warm brass hardware and floor-to-ceiling wardrobe",
+    doorStyles: ['Jordan'],
+    coverImage: '/projects/pennington/pennington-post_photo_001-1.jpg',
+    href: '/gallery/pennington',
+  },
 ];
 
 export default function Gallery() {
