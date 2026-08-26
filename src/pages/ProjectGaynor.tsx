@@ -194,7 +194,7 @@ export default function ProjectGaynor() {
               Remodeling
             </span>
             <a
-              href="https://www.cabinettreestudio.com"
+              href="https://www.cabinettreestudio.com/before-after/details-and-illuminated-design-y945g"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-sm text-[#6B5E54] hover:text-[#242019] transition-colors inline-flex items-center gap-1.5"

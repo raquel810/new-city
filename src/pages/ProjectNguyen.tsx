@@ -204,7 +204,7 @@ export default function ProjectNguyen() {
               Remodeling
             </span>
             <a
-              href="https://www.cabinettreestudio.com"
+              href="https://www.cabinettreestudio.com/before-after/natural-warmth-timeless-craftsmanship-gp56b"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-sm text-[#6B5E54] hover:text-[#242019] transition-colors inline-flex items-center gap-1.5"

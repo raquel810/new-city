@@ -33,14 +33,14 @@ function App() {
         <Route path="/specialty-glass" element={<SpecialtyGlass />} />
         <Route path="/optifit" element={<OptiFit />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/gallery/nguyen" element={<ProjectNguyen />} />
-        <Route path="/gallery/carsten" element={<ProjectCarsten />} />
-        <Route path="/gallery/schneide-kitchen" element={<ProjectSchneideKitchen />} />
-        <Route path="/gallery/schneide-bath" element={<ProjectSchneideBath />} />
-        <Route path="/gallery/schneide-laundry" element={<ProjectSchneideLaundry />} />
-        <Route path="/gallery/pennington" element={<ProjectPennington />} />
-        <Route path="/gallery/gaynor" element={<ProjectGaynor />} />
-        <Route path="/gallery/sorens" element={<ProjectSorens />} />
+        <Route path="/gallery/glacier-oak-estate" element={<ProjectNguyen />} />
+        <Route path="/gallery/alabaster-hearth" element={<ProjectCarsten />} />
+        <Route path="/gallery/deep-sea-reserve" element={<ProjectSchneideKitchen />} />
+        <Route path="/gallery/refined-slate-sanctuary" element={<ProjectSchneideBath />} />
+        <Route path="/gallery/lily-pad-utility-oasis" element={<ProjectSchneideLaundry />} />
+        <Route path="/gallery/cask-reserve" element={<ProjectPennington />} />
+        <Route path="/gallery/illuminated-fawn-estate" element={<ProjectGaynor />} />
+        <Route path="/gallery/sesame-rye-estate" element={<ProjectSorens />} />
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/contact" element={<Contact />} />

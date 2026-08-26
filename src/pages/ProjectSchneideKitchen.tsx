@@ -196,7 +196,7 @@ export default function ProjectSchneideKitchen() {
               Remodeling
             </span>
             <a
-              href="https://www.cabinettreestudio.com"
+              href="https://www.cabinettreestudio.com/before-after/bold-contrast-warm-welcome-dh3dy"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-sm text-[#6B5E54] hover:text-[#242019] transition-colors inline-flex items-center gap-1.5"

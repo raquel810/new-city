@@ -189,7 +189,7 @@ export default function ProjectPennington() {
               Remodeling
             </span>
             <a
-              href="https://www.cabinettreestudio.com"
+              href="https://www.cabinettreestudio.com/before-after/warm-modern-xh5jy"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-sm text-[#6B5E54] hover:text-[#242019] transition-colors inline-flex items-center gap-1.5"
