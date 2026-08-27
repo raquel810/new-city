@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DoorOpen, Palette, TreePine, ArrowRight, ClipboardList } from 'lucide-react';
+import { DoorOpen, Palette, TreePine, ArrowRight, ClipboardList, ExternalLink } from 'lucide-react';
 
 const FEATURED_WORK = [
   {
@@ -313,6 +313,58 @@ export default function Home() {
             Enter The Studio
             <ArrowRight className="w-5 h-5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Frameless Line Section */}
+      <section className="relative bg-[#1B2B3A] py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <p className="font-sans text-white/50 uppercase tracking-[0.2em] text-xs mb-4">
+                A Different Approach
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">
+                The Frameless Line
+              </h2>
+              <div className="w-16 h-px bg-white/30 mb-8" />
+              <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
+                Clean geometry. Full-overlay doors. European-style construction
+                engineered for modern spaces that demand precision without ornament.
+              </p>
+              <p className="font-sans text-white/50 text-base leading-relaxed mb-10">
+                Same shop. Same tolerances. A completely different aesthetic.
+              </p>
+              <a
+                href="https://hingecabinets.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-sans text-sm tracking-wide uppercase border border-white/40 text-white px-6 py-3 rounded-sm hover:bg-white hover:text-[#1B2B3A] transition-all duration-300 group"
+              >
+                Explore Hinge Cabinets
+                <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-3">
+                <img
+                  src="/images/image.png"
+                  alt="Frameless cabinetry by Hinge Cabinets"
+                  className="w-full rounded-sm object-cover aspect-[3/4]"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-3 pt-8">
+                <img
+                  src="/images/image copy.png"
+                  alt="Modern frameless kitchen cabinetry"
+                  className="w-full rounded-sm object-cover aspect-[3/4]"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

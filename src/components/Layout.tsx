@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 
 const navLinks = [
   { label: 'Door Styles', to: '/door-styles' },
@@ -67,6 +67,17 @@ function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <a
+              href="https://hingecabinets.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-sm text-[#1B2B3A] border border-[#1B2B3A]/30 rounded-full px-4 py-1.5 inline-flex items-center gap-1.5 hover:bg-[#1B2B3A] hover:text-white transition-all duration-200"
+            >
+              Frameless Line
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -115,6 +126,17 @@ function Navbar() {
               </Link>
             </li>
           ))}
+          <li className="pt-4 border-t border-brand-grey">
+            <a
+              href="https://hingecabinets.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-base text-[#1B2B3A] inline-flex items-center gap-2 hover:text-[#1B2B3A]/70 transition-colors duration-200"
+            >
+              Frameless Line
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </li>
         </ul>
       </div>
     </header>
@@ -188,8 +210,24 @@ function Footer() {
           </div>
         </div>
 
+        {/* Frameless Line */}
+        <div className="border-t border-white/20 mt-12 pt-8">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-sans text-xs tracking-widest uppercase text-brand-taupe">Our Frameless Line</span>
+          </div>
+          <a
+            href="https://hingecabinets.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 transition-colors duration-200"
+          >
+            Explore frameless cabinetry at Hinge Cabinets
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-sans text-xs text-brand-taupe">
             &copy; {new Date().getFullYear()} Harris Cabinetry. All rights reserved.
           </p>
