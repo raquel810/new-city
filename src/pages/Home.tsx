@@ -322,6 +322,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
+              <img
+                src="/hinge assets/hinge22 copy.png"
+                alt="Hinge Cabinets"
+                className="h-7 w-auto mb-6 opacity-80"
+                loading="lazy"
+              />
               <p className="font-sans text-white/50 uppercase tracking-[0.2em] text-xs mb-4">
                 A Different Approach
               </p>
@@ -349,15 +355,15 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-3">
                 <img
-                  src="/images/image.png"
-                  alt="Frameless cabinetry by Hinge Cabinets"
+                  src="/hinge assets/erving_hc-project4-2.jpg"
+                  alt="Frameless cabinetry project by Hinge Cabinets"
                   className="w-full rounded-sm object-cover aspect-[3/4]"
                   loading="lazy"
                 />
               </div>
               <div className="space-y-3 pt-8">
                 <img
-                  src="/images/image copy.png"
+                  src="/hinge assets/morawski-hingeselect_photo_3.jpg"
                   alt="Modern frameless kitchen cabinetry"
                   className="w-full rounded-sm object-cover aspect-[3/4]"
                   loading="lazy"
