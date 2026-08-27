@@ -323,7 +323,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <img
-                src="/hinge assets/hinge22 copy.png"
+                src="/hinge assets/hinge-white.png"
                 alt="Hinge Cabinets"
                 className="h-7 w-auto mb-6 opacity-80"
                 loading="lazy"
