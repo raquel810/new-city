@@ -162,17 +162,17 @@ export default function ProjectGaynor() {
         <h2 className="font-serif text-2xl md:text-3xl text-[#242019] mb-10">
           Full Gallery
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
           {galleryImages.map((src, index) => (
             <button
               key={src}
               onClick={() => openLightbox(index)}
-              className="relative aspect-square overflow-hidden rounded-lg group"
+              className="relative overflow-hidden rounded-lg group break-inside-avoid mb-3 md:mb-4"
             >
               <img
                 src={src}
                 alt={`The Illuminated Fawn Estate photo ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
