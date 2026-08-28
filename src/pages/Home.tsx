@@ -6,37 +6,37 @@ const FEATURED_WORK = [
     src: '/featured-images/twotonekitchen2-bryant_photo_0.jpg',
     alt: 'Two-tone kitchen featuring Bryant door style',
     doorStyle: 'Bryant',
-    orientation: 'landscape' as const,
+    gridClass: 'col-span-2 row-span-1',
   },
   {
     src: '/featured-images/bathroom-duncan_photo_0.jpg',
     alt: 'Custom bathroom vanity featuring Duncan door style',
     doorStyle: 'Duncan',
-    orientation: 'portrait' as const,
-  },
-  {
-    src: '/featured-images/kitchen3-jordan_photo_0.jpg',
-    alt: 'Kitchen with Jordan door style cabinetry',
-    doorStyle: 'Jordan',
-    orientation: 'landscape' as const,
-  },
-  {
-    src: '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg',
-    alt: 'Two-tone kitchen with Iverson and Erving door styles',
-    doorStyle: 'Iverson & Erving',
-    orientation: 'landscape' as const,
+    gridClass: 'col-span-1 row-span-2',
   },
   {
     src: '/featured-images/twotonekitchen3-russell_photo_0.jpg',
     alt: 'Kitchen cabinetry featuring Russell slab door style',
     doorStyle: 'Russell',
-    orientation: 'portrait' as const,
+    gridClass: 'col-span-1 row-span-2',
+  },
+  {
+    src: '/featured-images/kitchen3-jordan_photo_0.jpg',
+    alt: 'Kitchen with Jordan door style cabinetry',
+    doorStyle: 'Jordan',
+    gridClass: 'col-span-2 row-span-1',
+  },
+  {
+    src: '/featured-images/twotonekitchen4-iversonerving_photo_3.jpg',
+    alt: 'Two-tone kitchen with Iverson and Erving door styles',
+    doorStyle: 'Iverson & Erving',
+    gridClass: 'col-span-2 row-span-1',
   },
   {
     src: '/featured-images/twotonekitchen5-duncan_photo_2.jpg',
     alt: 'Two-tone kitchen featuring Duncan door style',
     doorStyle: 'Duncan',
-    orientation: 'landscape' as const,
+    gridClass: 'col-span-2 row-span-1',
   },
 ];
 
@@ -238,16 +238,10 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[240px]">
-            {FEATURED_WORK.map((item, i) => {
-              const spanClasses =
-                item.orientation === 'portrait'
-                  ? 'row-span-2'
-                  : 'col-span-2';
-
-              return (
+            {FEATURED_WORK.map((item, i) => (
                 <div
                   key={i}
-                  className={`group relative overflow-hidden rounded-lg ${spanClasses}`}
+                  className={`group relative overflow-hidden rounded-lg ${item.gridClass}`}
                 >
                   <img
                     src={item.src}
@@ -268,8 +262,8 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              );
-            })}
+              )
+            )})
           </div>
 
           <div className="text-center mt-12">
