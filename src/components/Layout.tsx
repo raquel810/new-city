@@ -226,6 +226,22 @@ function Footer() {
           </a>
         </div>
 
+        {/* Dealers & Trade */}
+        <div className="border-t border-white/20 mt-8 pt-8">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-sans text-xs tracking-widest uppercase text-brand-taupe">Dealers & Trade</span>
+          </div>
+          <a
+            href="https://www.hcdealers.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm text-white/80 hover:text-white inline-flex items-center gap-1.5 transition-colors duration-200"
+          >
+            Dealer & trade program
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-sans text-xs text-brand-taupe">
