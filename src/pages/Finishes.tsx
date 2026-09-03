@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { X } from 'lucide-react';
 
 interface PaintColor {
@@ -313,6 +314,13 @@ function SwatchDetail({
 }
 
 export default function Finishes() {
+  const seoBlock = (
+    <Helmet>
+      <title>Finishes | Harris Cabinetry</title>
+      <meta name="description" content="Browse 14 paint colors and 11 stain finishes for your custom cabinetry. Harris Cabinetry also offers custom color matching to any paint brand." />
+      <link rel="canonical" href="https://www.harris-cabinetry.com/finishes" />
+    </Helmet>
+  );
   const [activePaint, setActivePaint] = useState<string | null>(null);
   const [activeStain, setActiveStain] = useState<string | null>(null);
 
@@ -321,6 +329,7 @@ export default function Finishes() {
 
   return (
     <main>
+      {seoBlock}
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6">
         <div

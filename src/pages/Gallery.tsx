@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Camera, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface Project {
   id: string;
@@ -80,6 +81,11 @@ const projects: Project[] = [
 export default function Gallery() {
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
+      <Helmet>
+        <title>Project Gallery | Harris Cabinetry</title>
+        <meta name="description" content="Browse completed kitchen, bathroom, and laundry projects featuring custom Harris Cabinetry. See before-and-after photos and design details." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery" />
+      </Helmet>
       {/* Hero Banner */}
       <section className="relative bg-[#F7F6F4] pt-32 pb-20">
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Crosshair, Box, PanelLeft, Cpu, ArrowRight } from 'lucide-react';
 
 const PILLARS = [
@@ -31,6 +32,11 @@ const PILLARS = [
 export default function OptiFit() {
   return (
     <main>
+      <Helmet>
+        <title>OptiFit Appliance Integration | Harris Cabinetry</title>
+        <meta name="description" content="OptiFit is our precision appliance panel system with 1/16-inch tolerances, 3/4-inch plywood rigidity, and finished returns for a seamless built-in look." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/optifit" />
+      </Helmet>
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6 bg-[#F7F6F4]">
         <div className="max-w-4xl mx-auto text-center">

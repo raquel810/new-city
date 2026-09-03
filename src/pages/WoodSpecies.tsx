@@ -1,4 +1,5 @@
 import { TreePine, Leaf } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface WoodSpeciesData {
   name: string;
@@ -82,6 +83,11 @@ function StatBar({ label, value }: { label: string; value: number }) {
 export default function WoodSpecies() {
   return (
     <main className="bg-[#F7F6F4]">
+      <Helmet>
+        <title>Wood Species | Harris Cabinetry</title>
+        <meta name="description" content="Compare maple, hickory, cherry, walnut, alder, oak, and quarter sawn oak for your cabinets. See hardness, stability, and grain character ratings." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/wood-species" />
+      </Helmet>
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6">
         <div

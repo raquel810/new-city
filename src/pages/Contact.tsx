@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import {
   Send,
@@ -60,6 +61,13 @@ function formatStudioSummary(s: StudioSelections): string {
 }
 
 export default function Contact() {
+  const seoBlock = (
+    <Helmet>
+      <title>Contact Us | Harris Cabinetry</title>
+      <meta name="description" content="Get in touch with Harris Cabinetry in Plainfield, IL. Request a quote for your kitchen, bathroom, or built-in cabinetry project." />
+      <link rel="canonical" href="https://www.harris-cabinetry.com/contact" />
+    </Helmet>
+  );
   const [searchParams] = useSearchParams();
   const studioSelections = parseStudioParams(searchParams);
 
@@ -105,6 +113,7 @@ export default function Contact() {
 
   return (
     <div className="bg-[#F7F6F4] min-h-screen">
+      {seoBlock}
       {/* Hero Section */}
       <section className="bg-[#F7F6F4] pt-32 pb-20 px-4 text-center">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#242019] mb-4">

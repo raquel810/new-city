@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -50,6 +51,12 @@ export default function ProjectSorens() {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Sesame and Rye Estate Kitchen | Harris Cabinetry</title>
+        <meta name="description" content="Iverson and Erving-style kitchen in White Sesame paint with a Rye-stained island, dual-quartz waterfall countertop, and custom wood hood." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery/sesame-rye-estate" />
+      </Helmet>
     <div className="bg-[#F7F6F4] min-h-screen">
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <div
@@ -234,5 +241,6 @@ export default function ProjectSorens() {
         </div>
       )}
     </div>
+    </>
   );
 }

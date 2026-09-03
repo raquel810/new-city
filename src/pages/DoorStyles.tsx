@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, X } from 'lucide-react';
 
@@ -209,6 +210,13 @@ function SpecLine({ label, value }: { label: string; value: string }) {
 }
 
 export default function DoorStyles() {
+  const seoBlock = (
+    <Helmet>
+      <title>Door Styles | Harris Cabinetry</title>
+      <meta name="description" content="Explore 13 custom cabinet door styles from Harris Cabinetry, including slab, flat-panel mitered, and mortise and tenon options in maple, cherry, oak, and more." />
+      <link rel="canonical" href="https://www.harris-cabinetry.com/door-styles" />
+    </Helmet>
+  );
   const [activeDoor, setActiveDoor] = useState<string | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
 
@@ -226,6 +234,7 @@ export default function DoorStyles() {
 
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
+      {seoBlock}
       {/* Hero Banner */}
       <section className="bg-[#F7F6F4] pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -49,6 +50,12 @@ export default function ProjectPennington() {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Cask Reserve Kitchen | Harris Cabinetry</title>
+        <meta name="description" content="Jordan-style galley kitchen in Cask stain with glass display cabinets, warm brass hardware, and a floor-to-ceiling mudroom wardrobe." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery/cask-reserve" />
+      </Helmet>
     <div className="bg-[#F7F6F4] min-h-screen">
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <div
@@ -232,5 +239,6 @@ export default function ProjectPennington() {
         </div>
       )}
     </div>
+    </>
   );
 }

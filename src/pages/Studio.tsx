@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Check, ArrowRight, Palette, TreePine, Paintbrush } from 'lucide-react';
 
@@ -115,6 +116,11 @@ export default function Studio() {
 
   return (
     <div className="min-h-screen bg-[#F7F6F4]">
+      <Helmet>
+        <title>The Studio Door Builder | Harris Cabinetry</title>
+        <meta name="description" content="Design your custom cabinet door with our interactive builder. Choose edge profiles, center panels, wood species, and up to three finishes." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/studio" />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-[#F7F6F4] pt-32 pb-20 px-4">
         <div className="max-w-4xl mx-auto text-center">

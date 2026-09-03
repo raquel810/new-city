@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { DoorOpen, Palette, TreePine, ArrowRight, ClipboardList, ExternalLink } from 'lucide-react';
 
 const FEATURED_WORK = [
@@ -43,6 +44,11 @@ const FEATURED_WORK = [
 export default function Home() {
   return (
     <main>
+      <Helmet>
+        <title>Harris Cabinetry | Crafted Custom Cabinetry</title>
+        <meta name="description" content="Harris Cabinetry builds custom cabinetry with 13 door styles, premium paint and stain finishes, and expert craftsmanship. Serving Plainfield, IL and surrounding areas." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div

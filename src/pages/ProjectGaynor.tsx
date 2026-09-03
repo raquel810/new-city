@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -53,6 +54,12 @@ export default function ProjectGaynor() {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Illuminated Fawn Estate Kitchen | Harris Cabinetry</title>
+        <meta name="description" content="Duncan and Jordan-style kitchen in Vanilla paint with a Fawn-stained island, toe-kick LED lighting, and champagne bronze appliances." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery/illuminated-fawn-estate" />
+      </Helmet>
     <div className="bg-[#F7F6F4] min-h-screen">
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <div
@@ -237,5 +244,6 @@ export default function ProjectGaynor() {
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { GlassWater } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface GlassOption {
   name: string;
@@ -78,6 +79,11 @@ const glassOptions: GlassOption[] = [
 export default function SpecialtyGlass() {
   return (
     <main className="bg-[#F7F6F4]">
+      <Helmet>
+        <title>Specialty Glass | Harris Cabinetry</title>
+        <meta name="description" content="Choose from 11 decorative glass inserts for cabinet doors, including glacier, reeded, rain, frosted satin, seedy, and mirror options." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/specialty-glass" />
+      </Helmet>
       {/* Hero */}
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center">

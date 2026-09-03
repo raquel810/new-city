@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
@@ -51,6 +52,12 @@ export default function ProjectSchneideKitchen() {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Deep Sea Reserve Kitchen | Harris Cabinetry</title>
+        <meta name="description" content="Duncan-style kitchen in Deep Sea Dive paint with a natural hickory island, copper hardware, water glass uppers, and LED lighting." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery/deep-sea-reserve" />
+      </Helmet>
     <div className="bg-[#F7F6F4] min-h-screen">
       {/* Hero */}
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
@@ -240,5 +247,6 @@ export default function ProjectSchneideKitchen() {
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
@@ -37,6 +38,12 @@ export default function ProjectSchneideLaundry() {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Lily Pad Utility Oasis | Harris Cabinetry</title>
+        <meta name="description" content="Duncan-style laundry and mudroom in Lily Pad green with Polar-painted lockers, natural hickory bench, and built-in ironing station." />
+        <link rel="canonical" href="https://www.harris-cabinetry.com/gallery/lily-pad-utility-oasis" />
+      </Helmet>
     <div className="bg-[#F7F6F4] min-h-screen">
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <div
@@ -200,5 +207,6 @@ export default function ProjectSchneideLaundry() {
         </div>
       )}
     </div>
+    </>
   );
 }
