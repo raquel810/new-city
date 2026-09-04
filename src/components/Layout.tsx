@@ -14,7 +14,6 @@ const navLinks = [
 ];
 
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [row2Hidden, setRow2Hidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const lastScrollY = useRef(0);
@@ -22,8 +21,6 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 50);
-
       const md = window.matchMedia('(min-width: 768px)').matches;
       if (md) {
         if (y > 100 && y > lastScrollY.current) {
@@ -51,11 +48,7 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-sm shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm"
     >
       {/* Row 1 — Logo, hamburger (mobile), Frameless Line */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
