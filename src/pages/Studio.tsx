@@ -12,13 +12,13 @@ const outerEdges = [
 ];
 
 const innerEdges = [
-  { id: 'sanders', name: 'Sanders', image: '/thestudio-insideedge_sanders.png' },
-  { id: 'duncan', name: 'Duncan', image: '/thestudio-insideedge_duncan.png' },
-  { id: 'james', name: 'James', image: '/thestudio-insideedge_james.png' },
-  { id: 'jordan', name: 'Jordan', image: '/thestudio-insideedge_jordan.png' },
+  { id: '90shaker', name: '90 Shaker', image: '/thestudio-insideedge_90shaker.png' },
+  { id: 'boxbead', name: 'Box Bead', image: '/thestudio-insideedge_boxbead.png' },
   { id: 'bryant', name: 'Bryant', image: '/thestudio-insideedge_bryant.png' },
-  { id: 'taylor', name: 'Taylor', image: '/thestudio-insideedge_taylor.png' },
-  { id: '05', name: '05', image: '/thestudio-insideedge_05.png' },
+  { id: 'chamfer', name: 'Chamfer', image: '/thestudio-insideedge_chamfer.png' },
+  { id: 'jordan', name: 'Jordan', image: '/thestudio-insideedge_jordan.png' },
+  { id: 'payton', name: 'Payton', image: '/thestudio-insideedge_payton.png' },
+  { id: 'stepshaker', name: 'Step Shaker', image: '/thestudio-insideedge_stepshaker.png' },
 ];
 
 const centerPanels = [
@@ -46,7 +46,7 @@ const paintColors: Record<string, string> = {
   Drift: '#C6DDF0',
   Harbor: '#758B9A',
   Navy: '#35454E',
-  Nyx: '#2F2F30',
+  Onyx: '#2F2F30',
 };
 
 const stainColors: Record<string, { hex: string; image: string }> = {
