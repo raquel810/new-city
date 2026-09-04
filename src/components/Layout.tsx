@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Menu, X, Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 
@@ -15,17 +15,29 @@ const navLinks = [
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [row2Hidden, setRow2Hidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const y = window.scrollY;
+      setScrolled(y > 50);
+
+      const md = window.matchMedia('(min-width: 768px)').matches;
+      if (md) {
+        if (y > 100 && y > lastScrollY.current) {
+          setRow2Hidden(true);
+        } else if (y < lastScrollY.current) {
+          setRow2Hidden(false);
+        }
+      }
+      lastScrollY.current = y;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
@@ -45,54 +57,60 @@ function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
-        {/* Brand */}
+      {/* Row 1 — Logo, hamburger (mobile), Frameless Line */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center">
           <img
             src="/HC-Logo_2025-greybrown-0.png"
             alt="Harris Cabinetry"
-            className="h-10 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="md:hidden p-2 text-brand-black hover:text-brand-taupe transition-colors"
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
+
+          <a
+            href="https://hingecabinets.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm text-[#1B2B3A] border border-[#1B2B3A]/30 rounded-full px-4 py-1.5 inline-flex items-center gap-1.5 hover:bg-[#1B2B3A] hover:text-white transition-all duration-200"
+          >
+            Frameless Line
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+      </div>
+
+      {/* Row 2 — Nav links (md+ only), slides away on scroll-down */}
+      <nav
+        className={`hidden md:block border-t border-brand-grey/30 overflow-hidden transition-all duration-300 ease-in-out ${
+          row2Hidden ? 'max-h-0 opacity-0' : 'max-h-16 opacity-100'
+        }`}
+      >
+        <ul className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-center gap-8 py-2.5">
           {navLinks.map((link) => (
             <li key={link.to}>
               <Link
                 to={link.to}
-                className="font-sans text-sm text-brand-black hover:text-brand-taupe transition-colors duration-200"
+                className="whitespace-nowrap font-sans text-sm text-brand-black hover:text-brand-taupe transition-colors duration-200"
               >
                 {link.label}
               </Link>
             </li>
           ))}
-          <li>
-            <a
-              href="https://hingecabinets.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans text-sm text-[#1B2B3A] border border-[#1B2B3A]/30 rounded-full px-4 py-1.5 inline-flex items-center gap-1.5 hover:bg-[#1B2B3A] hover:text-white transition-all duration-200"
-            >
-              Frameless Line
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </li>
         </ul>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileOpen(true)}
-          className="lg:hidden p-2 text-brand-black hover:text-brand-taupe transition-colors"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
       </nav>
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 md:hidden ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setMobileOpen(false)}
@@ -100,7 +118,7 @@ function Navbar() {
 
       {/* Mobile Slide-in Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
