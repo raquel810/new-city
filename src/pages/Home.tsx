@@ -268,8 +268,7 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              )
-            )})
+            ))}
           </div>
 
           <div className="text-center mt-12">
