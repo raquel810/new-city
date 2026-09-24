@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, X } from 'lucide-react';
 
 interface InstalledPhoto {
@@ -217,10 +217,14 @@ export default function DoorStyles() {
       <link rel="canonical" href="https://www.harris-cabinetry.com/door-styles" />
     </Helmet>
   );
-  const [activeDoor, setActiveDoor] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const detailRef = useRef<HTMLDivElement>(null);
 
-  const selected = DOOR_STYLES.find((d) => d.name === activeDoor);
+  const doorParam = searchParams.get('door');
+  const selected = doorParam
+    ? DOOR_STYLES.find((d) => d.name.toLowerCase() === doorParam.toLowerCase())
+    : undefined;
+  const activeDoor = selected?.name ?? null;
 
   useEffect(() => {
     if (selected && detailRef.current) {
@@ -266,7 +270,7 @@ export default function DoorStyles() {
                 {/* Content */}
                 <div className="flex-1 p-8 lg:p-10 relative">
                   <button
-                    onClick={() => setActiveDoor(null)}
+                    onClick={() => setSearchParams({}, { replace: true })}
                     className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#F7F6F4] flex items-center justify-center text-[#949089] hover:text-[#242019] hover:bg-[#E0E1E1] transition-colors"
                   >
                     <X className="w-4 h-4" />
@@ -355,9 +359,13 @@ export default function DoorStyles() {
             return (
               <button
                 key={door.name}
-                onClick={() =>
-                  setActiveDoor((prev) => (prev === door.name ? null : door.name))
-                }
+                onClick={() => {
+                  if (activeDoor === door.name) {
+                    setSearchParams({}, { replace: true });
+                  } else {
+                    setSearchParams({ door: door.name.toLowerCase() }, { replace: true });
+                  }
+                }}
                 className={`group flex flex-col items-center text-center p-4 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#949089] focus:ring-offset-2 ${
                   isActive
                     ? 'border-[#242019] bg-white shadow-lg'
